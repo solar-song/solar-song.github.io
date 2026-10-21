@@ -5,5 +5,8 @@
      "x": "https://x.com/solarsong",
      "linkedin": "https://www.linkedin.com/in/solarsong/",
      "email": "mailto:fortunecookie555@outlook.com"
+   },
+   "featured-list":{
+   "first":"posts/2026-10-22.html"
    }
 }

@@ -123,7 +123,41 @@ async function loadPosts() {
   const recentEl = document.getElementById('recent-list');
   if (!featuredEl || !recentEl) return;
 
-  const featured = posts.length ? [posts[0]] : [];
+  const base = (typeof window !== 'undefined' && window.__SITE_BASE) ? window.__SITE_BASE : '';
+  let featured = [];
+
+  try {
+    const res = await fetch(base + 'site.json');
+    if (res.ok) {
+      const cfg = await res.json();
+      const fl = cfg && (cfg['featured-list'] || cfg['featuredList'] || cfg.featured);
+      if (fl) {
+        let vals = [];
+        if (Array.isArray(fl)) vals = fl;
+        else if (typeof fl === 'object') vals = Object.values(fl);
+        vals = vals.filter(v => v && v !== 'null' && typeof v === 'string');
+
+        for (const rel of vals) {
+          // try to match against the posts index first
+          const match = posts.find(p => p.url === rel || p.url === '/' + rel || p.url.endsWith(rel));
+          if (match) {
+            featured.push(match);
+          } else {
+            // fallback: construct a minimal post object so the UI can still render a link
+            const name = rel.split('/').pop() || rel;
+            const title = name.replace(/\.html?$/i, '').replace(/[-_]/g, ' ');
+            featured.push({ title, url: rel, formattedDate: '', excerpt: '' });
+          }
+        }
+      }
+    }
+  } catch (e) {
+    // ignore — non-critical
+  }
+
+  // if no featured defined, default to the newest post
+  if (!featured.length && posts.length) featured = [posts[0]];
+
   // show only the 5 most recent posts on the homepage
   const recent = posts.slice(0, 5);
 

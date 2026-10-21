@@ -65,7 +65,7 @@
 <li><code>proxy_off </code>turns it off.</li>
 <li><code>proxy_status</code> shows whether it’s on and where it’s pointing.</li>
 </ul>
-<h2 id="before-you-start">Before You Start</h2>
+<h3 id="before-you-start">Before You Start</h3>
 <p>You need three things:</p>
 <p>A running proxy client. This guide uses Clash, which listens on a local “port” (a numbered doorway on your computer) of 7897. Open your Clash app and confirm it’s running. If you use a different client, or a different port, you’ll change the number in the steps below.</p>
 <p>A terminal. Any terminal app works.</p>
@@ -118,15 +118,15 @@ proxy_status() {
 <p>Your terminal only reads <code>.bashrc</code> when it starts, so either open a new terminal window or run:</p>
 <pre><code class="language-bash">source ~/.bashrc</code></pre>
 <h3 id="step-4-try-it-out">Step 4: Try It Out</h3>
-<p><strong>Turn the proxy on:</strong>
-<pre><code class="language-bash">proxy_on</code></pre></p>
+<p><strong>Turn the proxy on:</strong></p>
+<pre><code class="language-bash">proxy_on</code></pre>
 <p>You should see a green message confirming the proxy is enabled.</p>
-<p><strong>Check the status:</strong>
-<pre><code class="language-bash">proxy_status</code></pre></p>
+<p><strong>Check the status:</strong></p>
+<pre><code class="language-bash">proxy_status</code></pre>
 <p>This prints the proxy addresses currently in use and whether the <code>sudo</code> shortcut is active.</p>
-<p><strong>Turn the proxy off:</strong>
+<p><strong>Turn the proxy off:</strong></p>
 <pre><code class="language-bash">proxy_off</code></pre>
-You should see a red message confirming it’s disabled.</p>
+<p>You should see a red message confirming it’s disabled.</p>
 <h3 id="step-5-confirm-it-really-works">Step 5: Confirm It Really Works</h3>
 <p>Commands like <code>proxy_on</code> only change your terminal, so the best test is to see whether your internet address changes. Run this while the proxy is on:</p>
 <pre><code class="language-bash">curl https://ifconfig.me</code></pre>

@@ -1,0 +1,13 @@
+{
+  "name": "personal-blog-template",
+  "version": "1.0.0",
+  "description": "Minimal personal blog template that converts markdown posts to themed HTML",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "gray-matter": "^2.0.1",
+    "marked": "^5.1.1"
+  }
+}

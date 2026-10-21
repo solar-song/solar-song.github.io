@@ -1,0 +1,11 @@
+[
+  {
+    "title": "A complete overhaul for my personal tech blog!",
+    "date": "2026-10-21T13:06:14.942Z",
+    "formattedDate": "Oct 21, 2026",
+    "url": "posts/2026-10-21.html",
+    "slug": "2026-10-21",
+    "excerpt": "Here you are my first post! Announcement for my brand new personal tech blog come online!",
+    "content": "Hello, everyone, and welcome, fellow netizens! I’m popping in to say hi. My personal website has been sitting on GitHub for about ten years without an update, so it’s time for a renovation. Today I’m launching my brand-new tech blog. It’s simple by design: I write posts in local Markdown files, convert them to HTML, and push them to a remote repository for online display. I did look at plenty of free blog templates on GitHub, but I didn’t need much beyond the basics. As a developer, I mostly use Markdown for code logs and notes, so what I really wanted was a blog that turns Markdown into HTML and serves it online. That’s it. With some help from AI, I built this template in a few hours and spent another hour or two testing it. And ta-da, it’s done! Consider this the official launch day announcement. Now, please enjoy this lovely cat to brighten your day a little :3 Hello, everyone, and welcome, fellow netizens! I’m popping in to say hi. My personal website has been sitting on GitHub for about ten years without an update, so it’s time for a renovation. Today I’m launching my brand-new tech blog. It’s simple by design: I write posts in local Markdown files, convert them to HTML, and push them to a remote repository for online display. I did look at plenty of free blog templates on GitHub, but I didn’t need much beyond the basics. As a developer, I mostly use Markdown for code logs and notes, so what I really wanted was a blog that turns Markdown into HTML and serves it online. That’s it. With some help from AI, I built this template in a few hours and spent another hour or two testing it. And ta-da, it’s done! Consider this the official launch day announcement. Now, please enjoy this lovely cat to brighten your day a little :3 ![cuttiecat](img/cuttiecat.jpg)"
+  }
+]

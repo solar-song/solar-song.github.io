@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Ctrl+Craft</title>
+  <meta name="description" content="A bit about me and this blog.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Highlight.js themes (light/dark) -->
+  <link id="code-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="code-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>
+    // Set theme before paint to avoid a flash
+    (function () {
+      var t = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="index.html" class="logo">Ctrl+Craft</a>
+      <nav id="nav" aria-label="Main">
+        <button id="menu-btn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path class="open" d="M3 6h18M3 12h18M3 18h18"/><path class="close" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <ul id="menu">
+          <li><a href="all-posts.html" class="active">Posts</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li>
+            <a href="#" class="icon-btn" aria-label="Search" title="Search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-btn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+              <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+              <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap"><hr></div>
+  </header>
+
+  <main id="main-content" class="wrap page">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+
+    </nav>
+
+    <h1 class="page-title">About Me</h1>
+
+    <div class="prose">
+
+
+      <img src="assets/about.jpg" alt="About this blog" onerror="this.style.display='none'">
+
+      <h2>
+        Hi there, and welcome! You can call me Solar Song.
+      </h2>
+
+
+      <p>
+        <b>Professionally</b>, I’m a full-stack AI engineer. I build SaaS web apps for car manufacturers and AI workflows for accounting and audit teams. But I think of myself as a polymath, because my curiosity reaches well beyond code. I’m drawn to music production, game modding, and hands-on DIY projects.
+      </p>
+
+
+      <p>Music has been part of my life for over a decade. I play guitar and drums, and I’m comfortable on keyboard too, which turns out to be essential for music production. You can hear some of the pieces I’ve written over the years on my Instagram:<a href="https://www.instagram.com/fortunecookie555/">fortunecookie555</a></p>
+
+      <p>I also love building things in the physical world. Recently I designed my own air purifier with a personalized three-layer filter that captures PM2.5, PM10, formaldehyde, and dust. I’m still testing it and will spend another month running it alongside an air quality monitor, making adjustments as I go. Once that’s done, I plan to write a blog post about the process.</p>
+
+      <p>I like to think of myself as smart and a little lazy. I look for the simplest solution that works. That mindset led me to switch my development environment from Windows and macOS to Linux, and I’ve spent a lot of time tuning it to fit my habits. I’d love to share what I’ve done with Fedora 44 to boost productivity someday, so keep an eye out for that post too.</p>
+
+      <p>Thanks for stopping by. Feel free to look around, and say hello if something here catches your interest!</p>
+
+      <p>
+        Found a typo or have a question? Feel free to
+        <a href="mailto:fortunecookie555@outlook.com">send me an email</a> or reach out on
+        <a href="https://github.com/solar-song" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+
+      <p>Thanks for reading! 🙏</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap"><hr></div>
+    <div class="wrap footer-inner">
+      <div class="socials"><a href="https://github.com/solar-song" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+<a href="https://x.com/solarsong" title="X" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="https://www.linkedin.com/in/solarsong/" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="mailto:fortunecookie555@outlook.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a></div>
+      <div class="copy">Copyright &copy; <span id="year">2026</span> &nbsp;—&nbsp; solar-song &nbsp;|&nbsp; All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

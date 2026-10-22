@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown Editor Recommendation | Ctrl+Craft</title>
+  <meta name="description" content="My experience trying several Markdown editors for blog writing, and the one I ended up choosing">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <!-- Highlight.js themes (light/dark) -->
+  <link id="code-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="code-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>
+    // Set theme before paint
+    (function () {
+      var t = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="../index.html" class="logo">Ctrl+Craft</a>
+      <nav id="nav" aria-label="Main">
+        <button id="menu-btn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path class="open" d="M3 6h18M3 12h18M3 18h18"/><path class="close" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <ul id="menu">
+          <li><a href="../index.html#posts">Posts</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li>
+            <a href="#" class="icon-btn" aria-label="Search" title="Search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-btn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+              <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+              <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap"><hr></div>
+  </header>
+
+  <main id="main-content" class="wrap page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+
+    <h1 class="page-title">Markdown Editor Recommendation</h1>
+
+    <div class="prose">
+      <div class="date">Published: <time>Oct 22, 2026</time></div>
+      <p>I write my blog posts in Markdown, a simple plain-text format where symbols like <code>#</code> for headings and <code>**</code> for bold show how the text should look. I wanted an editor that looks similar to <strong>Obsidian</strong>, a popular app for taking notes in Markdown. I started with <strong>Ghostwriter</strong>, a lightweight Markdown editor that was easy to install. On Fedora, a Linux distribution, I only needed to run <code>sudo dnf install ghostwriter</code>, and it was ready to use.</p>
+<p>Unfortunately, Ghostwriter had several serious display problems on Fedora 44, and they slowed down my writing. So I kept looking for a better option.</p>
+<p>Many people wonder why I didn’t simply use Obsidian. Obsidian is an excellent app, and I like it. It organizes everything into “vaults,” which are collections of notes that you can keep in one place. I have also installed a few community plugins to manage attachments and photos, and they work well for notes. However, the way Obsidian organizes vaults doesn’t match how I store my blog posts. What I need is a simple editor where I can open a Markdown file, write for the blog, and not worry about accidentally disrupting my blog’s folder structure.</p>
+<p>My search ended with <strong>MarkText</strong>. It is heavier than Ghostwriter, but it does two things I need very well:</p>
+<ul>
+<li><p>First, its live preview shows the formatted result as I type, so I can see headings, bold text, and links without switching windows. </p>
+</li>
+<li><p>Second, once I add headings, it automatically builds a clickable outline on the left side of the screen. I can jump between sections of a long post with one click, which saves a lot of time.</p>
+</li>
+</ul>
+<img title="" src="img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
+
+<p>If you want a Markdown editor that is simple and focused on writing, rather than a full note-taking system like Obsidian, I highly recommend MarkText.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap"><hr></div>
+    <div class="wrap footer-inner">
+      <div class="socials"><a href="https://github.com/solar-song" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+<a href="https://x.com/solarsong" title="X" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="https://www.linkedin.com/in/solarsong/" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="mailto:fortunecookie555@outlook.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a></div>
+      <div class="copy">Copyright &copy; <span id="year">2026</span> &nbsp;—&nbsp; solar-song &nbsp;|&nbsp; All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>window.__SITE_BASE = "../";</script>
+  <script src="../script.js"></script>
+</body>
+</html>

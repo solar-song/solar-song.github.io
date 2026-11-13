@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Updating Without Fighting Your Own Software: How Linux Handles Security Patches | Ctrl+Craft</title>
+  <meta name="description" content="On Linux, a security update can be installed while your apps are still open, and the fix takes effect the moment you restart them. Windows can’t do the same thing. Here’s how the two systems differ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <!-- Highlight.js themes (light/dark) -->
+  <link id="code-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="code-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>
+    // Set theme before paint
+    (function () {
+      var t = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="../index.html" class="logo">Ctrl+Craft</a>
+      <nav id="nav" aria-label="Main">
+        <button id="menu-btn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path class="open" d="M3 6h18M3 12h18M3 18h18"/><path class="close" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <ul id="menu">
+          <li><a href="../index.html#posts">Posts</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li>
+            <a href="#" class="icon-btn" aria-label="Search" title="Search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-btn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+              <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+              <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap"><hr></div>
+  </header>
+
+  <main id="main-content" class="wrap page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+
+    <h1 class="page-title">Updating Without Fighting Your Own Software: How Linux Handles Security Patches</h1>
+
+    <div class="prose">
+      <div class="date">Published: <time>Nov 13, 2026</time></div>
+      <h3 id="why-updates-interrupt-our-work">Why Updates Interrupt Our Work</h3>
+<p>Few things are more frustrating than a security update that interrupts your work at the worst possible moment. You’re in the middle of a document, a build, or a research session, and suddenly your computer insists it needs to restart “to finish installing updates.” Most of us have learned to live with it, but the reason it happens reveals a real architectural difference between Windows and Linux.</p>
+<h3 id="how-linux-applies-security-updates">How Linux Applies Security Updates</h3>
+<p>On a typical Linux system, security updates are usually applied from the command line, through tools like <code>apt</code>, <code>dnf</code>, or <code>pacman</code>. Running a command such as <code>sudo apt upgrade</code> replaces the program files on disk with patched versions. The interesting part is what happens to the programs that are already running.</p>
+<p>When you launch an application, the operating system loads its code into memory. If the update then replaces the file on disk, the running program keeps using the copy already in memory. Linux allows this because it doesn’t lock files that are in use. The package manager writes the new file under the same name, and the old file’s data stays alive for as long as a process is still using it. Your open session continues running the old version, unaffected, until you close it.</p>
+<p>Once you exit the application and open it again, the system loads the new file from disk, and you’re running the patched version. No reboot is required, and nothing you were working on gets interrupted. For a large share of security fixes, particularly those in user applications like browsers, editors, or media players, this is all it takes.</p>
+<h3 id="how-windows-handles-the-same-problem">How Windows Handles the Same Problem</h3>
+<p>Windows works differently, and the reason is largely historical. Windows locks any executable or DLL that is currently in use. If an updater tries to overwrite a file that a running program depends on, Windows refuses. For years, this forced Microsoft to handle many updates by scheduling file replacements for the next boot, before the operating system and most applications load. That’s why so many Windows updates end with a restart prompt, and why “Restart to finish updating” is such a familiar message.</p>
+<p>Windows has improved over time. The Restart Manager can close and reopen certain applications automatically, and some components can be updated without a full reboot. Still, the underlying model hasn’t changed. If an update touches a file that’s actively loaded, Windows generally needs a restart before the new version can take over. You cannot simply close and reopen the app to get the fix, because the old file is still locked until the system releases it.</p>
+<h3 id="the-advantages-of-the-linux-approach">The Advantages of the Linux Approach</h3>
+<p>The Linux approach has real advantages. Updates are predictable, they can be scripted and scheduled, and servers can receive patches without downtime. Applying a fix to one application doesn’t force you to restart your whole session. For developers and system administrators, this makes patching a routine task rather than a disruptive event.</p>
+<h3 id="the-catch-running-programs-keep-old-code">The Catch: Running Programs Keep Old Code</h3>
+<p>There is a catch, however, and it’s worth being honest about it. Because running processes keep the old code in memory, a vulnerable program remains vulnerable until it’s restarted. If you install a security update and never close your browser, the browser is still running the flawed code. Careful Linux users check for this. Tools such as <code>needrestart</code> on Debian and Ubuntu, or <code>dnf needs-restarting</code> on Fedora, report which services and programs are still running outdated code. Updates to the kernel or core system libraries, which everything depends on, still require a reboot.</p>
+<h3 id="weighing-the-trade-offs">Weighing the Trade-offs</h3>
+<p>So the fair summary is this: Linux lets you patch the system and keep working, and the fix arrives as soon as you restart the specific app. Windows usually asks you to restart the whole machine to get the same protection. Neither approach is free of trade-offs. Linux asks you to remember to restart what you’ve patched, while Windows trades that responsibility for a more forceful, less flexible process.</p>
+<h3 id="conclusion-why-linux-suits-most-people">Conclusion: Why Linux Suits Most People</h3>
+<p>For most people, Linux is the better choice precisely because of how it handles updates. A forced restart is more than a minor inconvenience. It breaks concentration, closes documents you hadn’t saved, and interrupts the flow of a session that might have taken an hour to build. Linux spares you that disruption. Patches arrive quietly in the background, the fix takes effect when you next open the app, and your work continues uninterrupted. Over weeks and months, those avoided interruptions add up to longer, more focused sessions and work of noticeably better quality.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap"><hr></div>
+    <div class="wrap footer-inner">
+      <div class="socials"><a href="https://github.com/solar-song" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+<a href="https://x.com/solarsong" title="X" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="https://www.linkedin.com/in/solarsong/" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="mailto:fortunecookie555@outlook.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a></div>
+      <div class="copy">Copyright &copy; <span id="year">2026</span> &nbsp;—&nbsp; solar-song &nbsp;|&nbsp; All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>window.__SITE_BASE = "../";</script>
+  <script src="../script.js"></script>
+</body>
+</html>

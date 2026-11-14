@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
   <title>Ctrl+Craft</title>
-  <link>.</link>
+  <link>https://solar-song.github.io</link>
   <description>Ctrl+Craft updates</description>
   <item>
     <title>Healthy Eating Helped Me Sleep. Moving My Body Helped Me Sleep Better.</title>
-    <link>posts/2026-11-14.html</link>
-    <guid isPermaLink="true">posts/2026-11-14.html</guid>
+    <link>https://solar-song.github.io/posts/2026-11-14.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-14.html</guid>
     <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Eating well improved my life, but it was the everyday movement I didn’t notice at first that made the biggest difference to my sleep.]]></description>
-    <content:encoded><![CDATA[<p><img src="img/2026-11-14.jpg" alt="SleepCat"></p>
+    <content:encoded><![CDATA[<p><img src="https://solar-song.github.io/img/2026-11-14.jpg" alt="SleepCat"></p>
 <p>For a long time, I believed that eating healthy was the key to a good night’s sleep. I cleaned up my diet, cut back on late-night snacks, and felt better in many ways. My energy was steadier, my mood was lighter, and I felt more like myself. But my sleep only improved so much. Some nights I still lay awake staring at the ceiling, even on days when I had eaten perfectly.</p>
 <p>It took me a while to notice what was missing. The thing that seemed to decide whether I slept well was not what I ate. It was how much I moved.</p>
 <p>I don’t mean I suddenly became a gym person. My routine is pretty ordinary. I cook for myself most nights, which means standing, chopping, stirring, and walking back and forth between the counter and the stove. I do my chores by hand instead of putting them off. And when I run out of groceries, I walk about a kilometer to the supermarket and carry everything home. None of these things feels like exercise on its own. But together, they add up to a real amount of movement across the day.</p>
@@ -22,8 +22,8 @@
   </item>
   <item>
     <title>Updating Without Fighting Your Own Software: How Linux Handles Security Patches</title>
-    <link>posts/2026-11-13.html</link>
-    <guid isPermaLink="true">posts/2026-11-13.html</guid>
+    <link>https://solar-song.github.io/posts/2026-11-13.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-13.html</guid>
     <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[On Linux, a security update can be installed while your apps are still open, and the fix takes effect the moment you restart them. Windows can’t do the same thing. Here’s how the two systems differ.]]></description>
     <content:encoded><![CDATA[<h3 id="why-updates-interrupt-our-work">Why Updates Interrupt Our Work</h3>
@@ -47,20 +47,20 @@
   </item>
   <item>
     <title>Fresh from Her Oven: Why I’m Spoiled Every Morning</title>
-    <link>posts/2026-11-05.html</link>
-    <guid isPermaLink="true">posts/2026-11-05.html</guid>
+    <link>https://solar-song.github.io/posts/2026-11-05.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-05.html</guid>
     <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Golden, sesame-topped buns straight from my partner’s kitchen. A little love, a lot of warmth, and a reminder of why I’m the luckiest person at the breakfast table.]]></description>
     <content:encoded><![CDATA[<h4 id="today-i-dont-wanna-talk-about-tech-today-i-just-want-to-brag-about-the-bread-my-partner-baked">Today I don&#39;t wanna talk about tech. Today I just want to brag about the bread my partner baked!</h4>
-<p><img src="img/2026-11-05-2.png" alt="preperation"></p>
-<p><img src="img/2026-11-05-1.png" alt="breads"></p>
+<p><img src="https://solar-song.github.io/img/2026-11-05-2.png" alt="preperation"></p>
+<p><img src="https://solar-song.github.io/img/2026-11-05-1.png" alt="breads"></p>
 <h4 id="my-partner-baked-these-fresh-and-im-completely-spoiled-golden-tops-sesame-sprinkled-on-top-soft-and-fluffy-inside-every-loaf-comes-from-her-own-hands-and-i-love-her-for-it">My partner baked these fresh, and I’m completely spoiled. Golden tops, sesame sprinkled on top, soft and fluffy inside. Every loaf comes from her own hands, and I love her for it.</h4>
 ]]></content:encoded>
   </item>
   <item>
     <title>A Very Simple RSS Reader for Linux</title>
-    <link>posts/2026-11-02.html</link>
-    <guid isPermaLink="true">posts/2026-11-02.html</guid>
+    <link>https://solar-song.github.io/posts/2026-11-02.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-02.html</guid>
     <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Here I am introducing the brand new simplest RSS reader for linux]]></description>
     <content:encoded><![CDATA[<h3 id="hello-linux-community-introducing-my-simple-rss-reader--built-with-proxy-flexibility-in-mind">Hello, Linux community! Introducing my simple RSS reader — built with proxy flexibility in mind.</h3>
@@ -72,7 +72,7 @@
 <p>I started developing a simple RSS reader, with one main goal in mind: <strong>making proxy configuration as easy and straightforward as possible.</strong> No need to mess around with system-wide network settings or rely on TUN mode just to get an individual application working.</p>
 <p>Along the way, I realized that I also wanted more control over the reading experience. So I added support for custom fonts and font sizes, allowing users to personalize the interface and make reading more comfortable.</p>
 <p>And here we are! The first stable version, <a href="https://github.com/solar-song/Simple-RSS-Reader">Simple RSS Reader v1.0</a>, is finally ready.</p>
-<p><img src="img/2026-11-02.png" alt="Screenshot of Simple RSS Reader"></p>
+<p><img src="https://solar-song.github.io/img/2026-11-02.png" alt="Screenshot of Simple RSS Reader"></p>
 <p>I&#39;ve been using and testing it for quite some time, and so far, I haven&#39;t run into any new bugs. Of course, there&#39;s always room for improvement, and I have plenty of ideas for additional features down the road.</p>
 <p>This is a relatively small project, but I built it to solve a problem I personally encountered, and I hope it might be useful to someone else facing similar frustrations.</p>
 <p>I&#39;m happy to share it with the Linux community!</p>
@@ -82,8 +82,8 @@
   </item>
   <item>
     <title>A Beginner’s Guide to Email Aliases: Protect Your Privacy Online</title>
-    <link>posts/2026-10-30.html</link>
-    <guid isPermaLink="true">posts/2026-10-30.html</guid>
+    <link>https://solar-song.github.io/posts/2026-10-30.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-10-30.html</guid>
     <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Your Email Address Is More Exposed Than You Think]]></description>
     <content:encoded><![CDATA[<h3 id="why-this-matters-a-recent-example">Why This Matters: A Recent Example</h3>
@@ -134,8 +134,8 @@
   </item>
   <item>
     <title>Why the GUI version of Clash is so glitchy?</title>
-    <link>posts/2026-10-27.html</link>
-    <guid isPermaLink="true">posts/2026-10-27.html</guid>
+    <link>https://solar-song.github.io/posts/2026-10-27.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-10-27.html</guid>
     <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[A frustrating experience with the Linux RPM build of Clash Verge Rev, and why I switched to a terminal-based alternative.]]></description>
     <content:encoded><![CDATA[<p>I recently tried a proxy client called <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> on Linux. It’s often described as one of the most popular Clash clients, and I’d been told the same thing when I asked ChatGPT and Claude for recommendations.</p>
@@ -149,8 +149,8 @@
   </item>
   <item>
     <title>Markdown Editor Recommendation</title>
-    <link>posts/2026-10-22-2.html</link>
-    <guid isPermaLink="true">posts/2026-10-22-2.html</guid>
+    <link>https://solar-song.github.io/posts/2026-10-22-2.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-10-22-2.html</guid>
     <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[My experience trying several Markdown editors for blog writing, and the one I ended up choosing]]></description>
     <content:encoded><![CDATA[<p>I write my blog posts in Markdown, a simple plain-text format where symbols like <code>#</code> for headings and <code>**</code> for bold show how the text should look. I wanted an editor that looks similar to <strong>Obsidian</strong>, a popular app for taking notes in Markdown. I started with <strong>Ghostwriter</strong>, a lightweight Markdown editor that was easy to install. On Fedora, a Linux distribution, I only needed to run <code>sudo dnf install ghostwriter</code>, and it was ready to use.</p>
@@ -163,15 +163,15 @@
 <li><p>Second, once I add headings, it automatically builds a clickable outline on the left side of the screen. I can jump between sections of a long post with one click, which saves a lot of time.</p>
 </li>
 </ul>
-<img title="" src="img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
+<img title="" src="https://solar-song.github.io/img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
 
 <p>If you want a Markdown editor that is simple and focused on writing, rather than a full note-taking system like Obsidian, I highly recommend MarkText.</p>
 ]]></content:encoded>
   </item>
   <item>
     <title>Easy Terminal Proxy Switching on Linux: A Beginner’s Guide</title>
-    <link>posts/2026-10-22.html</link>
-    <guid isPermaLink="true">posts/2026-10-22.html</guid>
+    <link>https://solar-song.github.io/posts/2026-10-22.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-10-22.html</guid>
     <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[A guide for setup alias and bash function for easier proxy ON & OFF]]></description>
     <content:encoded><![CDATA[<p>Sometimes you want your terminal to send its internet traffic through a VPN or proxy, and sometimes you don’t. Typing long export commands every time gets tedious. This guide shows you how to add three short commands to your terminal:</p>
@@ -277,8 +277,8 @@ proxy_status() {
   </item>
   <item>
     <title>A Complete Overhaul For My Personal Tech Blog!</title>
-    <link>posts/2026-10-21.html</link>
-    <guid isPermaLink="true">posts/2026-10-21.html</guid>
+    <link>https://solar-song.github.io/posts/2026-10-21.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-10-21.html</guid>
     <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Here you are my first post! Announcement for my brand new personal tech blog come online!]]></description>
     <content:encoded><![CDATA[<p>Hello, everyone, and welcome, fellow netizens! I’m popping in to say hi.</p>
@@ -286,7 +286,7 @@ proxy_status() {
 <p>I did look at plenty of free blog templates on GitHub, but I didn’t need much beyond the basics. As a developer, I mostly use Markdown for code logs and notes, so what I really wanted was a blog that turns Markdown into HTML and serves it online. That’s it.</p>
 <p>With some help from AI, I built this template in a few hours and spent another hour or two testing it. And ta-da, it’s done! Consider this the official launch day announcement.</p>
 <p>Now, please enjoy this lovely cat to brighten your day a little :3</p>
-<p><img src="img/cuttiecat.jpg" alt="cuttiecat"></p>
+<p><img src="https://solar-song.github.io/img/cuttiecat.jpg" alt="cuttiecat"></p>
 ]]></content:encoded>
   </item>
 </channel>

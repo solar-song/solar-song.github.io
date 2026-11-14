@@ -152,9 +152,65 @@ function formatDate(d) {
       try { pubDate = new Date(p.date).toUTCString(); } catch (e) { pubDate = ''; }
       const title = (p.title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
       const desc = (p.excerpt || '').replace(/]]>/g, ']]&gt;');
-      // use full HTML content when available; ensure CDATA terminators are escaped
-      const contentHtml = (p.contentHtml || '').replace(/]]>/g, ']]]]><![CDATA[>');
-      return `  <item>\n    <title>${title}</title>\n    <link>${itemUrl}</link>\n    <guid isPermaLink=\"true\">${itemUrl}</guid>\n    <pubDate>${pubDate}</pubDate>\n    <description><![CDATA[${desc}]]></description>\n    <content:encoded><![CDATA[${contentHtml}]]></content:encoded>\n  </item>`;
+
+      // Prepare contentHtml and rewrite relative image URLs to absolute so RSS readers can fetch them
+      let contentHtml = (p.contentHtml || '');
+      try {
+        if (siteUrl) {
+          // make src attributes absolute
+          contentHtml = contentHtml.replace(/(src\s*=\s*\")(?!https?:|\/\/|data:)([^\"]+)(\")/gi, (m, pre, url, post) => {
+            let newUrl = url;
+            if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
+            else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
+            return `${pre}${newUrl}${post}`;
+          });
+
+          contentHtml = contentHtml.replace(/(src\s*=\s*\')(?!https?:|\/\/|data:)([^\']+)(\')/gi, (m, pre, url, post) => {
+            let newUrl = url;
+            if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
+            else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
+            return `${pre}${newUrl}${post}`;
+          });
+
+          // make srcset attributes absolute (handles multiple comma-separated sources)
+          contentHtml = contentHtml.replace(/(srcset\s*=\s*\")(.*?)\"/gi, (m, pre, val) => {
+            const parts = val.split(',').map(s => s.trim()).map(entry => {
+              const segs = entry.split(/\s+/);
+              const url = segs[0];
+              const desc = segs.slice(1).join(' ');
+              let newUrl = url;
+              if (!/^(https?:|\/\/|data:)/i.test(url)) {
+                if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
+                else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
+              }
+              return desc ? `${newUrl} ${desc}` : newUrl;
+            });
+            return `${pre}${parts.join(', ')}\"`;
+          });
+
+          contentHtml = contentHtml.replace(/(srcset\s*=\s*\')(.*?)\'/gi, (m, pre, val) => {
+            const parts = val.split(',').map(s => s.trim()).map(entry => {
+              const segs = entry.split(/\s+/);
+              const url = segs[0];
+              const desc = segs.slice(1).join(' ');
+              let newUrl = url;
+              if (!/^(https?:|\/\/|data:)/i.test(url)) {
+                if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
+                else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
+              }
+              return desc ? `${newUrl} ${desc}` : newUrl;
+            });
+            return `${pre}${parts.join(', ')}\'`;
+          });
+        }
+      } catch (e) {
+        // ignore transformation errors
+      }
+
+      // ensure CDATA terminators are escaped
+      const safeContent = contentHtml.replace(/]]>/g, ']]]]><![CDATA[>');
+
+      return `  <item>\n    <title>${title}</title>\n    <link>${itemUrl}</link>\n    <guid isPermaLink=\"true\">${itemUrl}</guid>\n    <pubDate>${pubDate}</pubDate>\n    <description><![CDATA[${desc}]]></description>\n    <content:encoded><![CDATA[${safeContent}]]></content:encoded>\n  </item>`;
     }).join('\n');
 
     const rss = `<?xml version="1.0" encoding="utf-8"?>\n<rss version="2.0" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n<channel>\n  <title>${feedTitle}</title>\n  <link>${feedLink}</link>\n  <description>${feedDesc}</description>\n${itemsXml}\n</channel>\n</rss>\n`;

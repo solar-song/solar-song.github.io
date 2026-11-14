@@ -121,6 +121,7 @@ function formatDate(d) {
       slug,
       excerpt: excerpt.substring(0, 200),
       content: contentText,
+      contentHtml: html
     });
   }
 
@@ -129,6 +130,39 @@ function formatDate(d) {
 
   // write index.json into posts/
   await fs.writeFile(path.join(POSTS_DIR, 'index.json'), JSON.stringify(posts, null, 2), 'utf8');
+
+  // Generate rss.xml in project root so the RSS icon can link to it
+  try {
+    let siteCfg = null;
+    try {
+      const raw = await fs.readFile(path.join(__dirname, 'site.json'), 'utf8');
+      siteCfg = JSON.parse(raw);
+    } catch (e) {
+      siteCfg = null;
+    }
+
+    const siteUrl = siteCfg && (siteCfg.siteUrl || siteCfg.baseUrl) ? String(siteCfg.siteUrl || siteCfg.baseUrl).replace(/\/$/, '') : '';
+    const feedTitle = siteName.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const feedLink = siteUrl || '.';
+    const feedDesc = (siteCfg && siteCfg.description) ? siteCfg.description.replace(/&/g, '&amp;').replace(/</g, '&lt;') : `${siteName} updates`;
+
+    const itemsXml = posts.map(p => {
+      const itemUrl = siteUrl ? `${siteUrl.replace(/\/$/, '')}/${p.url.replace(/^\/?/, '')}` : p.url;
+      let pubDate = '';
+      try { pubDate = new Date(p.date).toUTCString(); } catch (e) { pubDate = ''; }
+      const title = (p.title || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      const desc = (p.excerpt || '').replace(/]]>/g, ']]&gt;');
+      // use full HTML content when available; ensure CDATA terminators are escaped
+      const contentHtml = (p.contentHtml || '').replace(/]]>/g, ']]]]><![CDATA[>');
+      return `  <item>\n    <title>${title}</title>\n    <link>${itemUrl}</link>\n    <guid isPermaLink=\"true\">${itemUrl}</guid>\n    <pubDate>${pubDate}</pubDate>\n    <description><![CDATA[${desc}]]></description>\n    <content:encoded><![CDATA[${contentHtml}]]></content:encoded>\n  </item>`;
+    }).join('\n');
+
+    const rss = `<?xml version="1.0" encoding="utf-8"?>\n<rss version="2.0" xmlns:content=\"http://purl.org/rss/1.0/modules/content/\">\n<channel>\n  <title>${feedTitle}</title>\n  <link>${feedLink}</link>\n  <description>${feedDesc}</description>\n${itemsXml}\n</channel>\n</rss>\n`;
+
+    await fs.writeFile(path.join(__dirname, 'rss.xml'), rss, 'utf8');
+  } catch (e) {
+    // ignore rss generation errors
+  }
 
   // Update top-level HTML files with configured site name (always ensure titles and logo match)
   const topFiles = ['index.html', 'about.html', 'all-posts.html'];

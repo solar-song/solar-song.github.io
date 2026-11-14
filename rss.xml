@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>Ctrl+Craft</title>
+  <link>.</link>
+  <description>Ctrl+Craft updates</description>
+  <item>
+    <title>Healthy Eating Helped Me Sleep. Moving My Body Helped Me Sleep Better.</title>
+    <link>posts/2026-11-14.html</link>
+    <guid isPermaLink="true">posts/2026-11-14.html</guid>
+    <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Eating well improved my life, but it was the everyday movement I didn’t notice at first that made the biggest difference to my sleep.]]></description>
+    <content:encoded><![CDATA[<p><img src="img/2026-11-14.jpg" alt="SleepCat"></p>
+<p>For a long time, I believed that eating healthy was the key to a good night’s sleep. I cleaned up my diet, cut back on late-night snacks, and felt better in many ways. My energy was steadier, my mood was lighter, and I felt more like myself. But my sleep only improved so much. Some nights I still lay awake staring at the ceiling, even on days when I had eaten perfectly.</p>
+<p>It took me a while to notice what was missing. The thing that seemed to decide whether I slept well was not what I ate. It was how much I moved.</p>
+<p>I don’t mean I suddenly became a gym person. My routine is pretty ordinary. I cook for myself most nights, which means standing, chopping, stirring, and walking back and forth between the counter and the stove. I do my chores by hand instead of putting them off. And when I run out of groceries, I walk about a kilometer to the supermarket and carry everything home. None of these things feels like exercise on its own. But together, they add up to a real amount of movement across the day.</p>
+<p>When I started paying attention, I saw the pattern. On days when I was mostly sitting, my sleep was restless and I took longer to drift off. On days when I had cooked, cleaned, and walked to get groceries, I fell asleep more easily and woke up feeling more rested. The more my body was active during the day, the better my nights tended to be.</p>
+<p>I’m not a doctor or a sleep researcher, so I can’t tell you this will work the same way for everyone. Sleep depends on many things, including stress, caffeine, screen time, and genetics. This is simply what I noticed in my own life, and it changed how I think about health.</p>
+<p>What surprised me most is how small this change was. I didn’t need a new fitness plan or an expensive class. I just needed to stop thinking of movement as something that only happens at the gym. Taking the long way home, carrying my own groceries, and doing the dishes by hand all count.</p>
+<p>If you’re struggling with sleep and you already eat well, it might be worth looking at your day from another angle. How much do you actually move between the moments you think of as exercise? You may find, as I did, that the little things add up more than you expect.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Updating Without Fighting Your Own Software: How Linux Handles Security Patches</title>
+    <link>posts/2026-11-13.html</link>
+    <guid isPermaLink="true">posts/2026-11-13.html</guid>
+    <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[On Linux, a security update can be installed while your apps are still open, and the fix takes effect the moment you restart them. Windows can’t do the same thing. Here’s how the two systems differ.]]></description>
+    <content:encoded><![CDATA[<h3 id="why-updates-interrupt-our-work">Why Updates Interrupt Our Work</h3>
+<p>Few things are more frustrating than a security update that interrupts your work at the worst possible moment. You’re in the middle of a document, a build, or a research session, and suddenly your computer insists it needs to restart “to finish installing updates.” Most of us have learned to live with it, but the reason it happens reveals a real architectural difference between Windows and Linux.</p>
+<h3 id="how-linux-applies-security-updates">How Linux Applies Security Updates</h3>
+<p>On a typical Linux system, security updates are usually applied from the command line, through tools like <code>apt</code>, <code>dnf</code>, or <code>pacman</code>. Running a command such as <code>sudo apt upgrade</code> replaces the program files on disk with patched versions. The interesting part is what happens to the programs that are already running.</p>
+<p>When you launch an application, the operating system loads its code into memory. If the update then replaces the file on disk, the running program keeps using the copy already in memory. Linux allows this because it doesn’t lock files that are in use. The package manager writes the new file under the same name, and the old file’s data stays alive for as long as a process is still using it. Your open session continues running the old version, unaffected, until you close it.</p>
+<p>Once you exit the application and open it again, the system loads the new file from disk, and you’re running the patched version. No reboot is required, and nothing you were working on gets interrupted. For a large share of security fixes, particularly those in user applications like browsers, editors, or media players, this is all it takes.</p>
+<h3 id="how-windows-handles-the-same-problem">How Windows Handles the Same Problem</h3>
+<p>Windows works differently, and the reason is largely historical. Windows locks any executable or DLL that is currently in use. If an updater tries to overwrite a file that a running program depends on, Windows refuses. For years, this forced Microsoft to handle many updates by scheduling file replacements for the next boot, before the operating system and most applications load. That’s why so many Windows updates end with a restart prompt, and why “Restart to finish updating” is such a familiar message.</p>
+<p>Windows has improved over time. The Restart Manager can close and reopen certain applications automatically, and some components can be updated without a full reboot. Still, the underlying model hasn’t changed. If an update touches a file that’s actively loaded, Windows generally needs a restart before the new version can take over. You cannot simply close and reopen the app to get the fix, because the old file is still locked until the system releases it.</p>
+<h3 id="the-advantages-of-the-linux-approach">The Advantages of the Linux Approach</h3>
+<p>The Linux approach has real advantages. Updates are predictable, they can be scripted and scheduled, and servers can receive patches without downtime. Applying a fix to one application doesn’t force you to restart your whole session. For developers and system administrators, this makes patching a routine task rather than a disruptive event.</p>
+<h3 id="the-catch-running-programs-keep-old-code">The Catch: Running Programs Keep Old Code</h3>
+<p>There is a catch, however, and it’s worth being honest about it. Because running processes keep the old code in memory, a vulnerable program remains vulnerable until it’s restarted. If you install a security update and never close your browser, the browser is still running the flawed code. Careful Linux users check for this. Tools such as <code>needrestart</code> on Debian and Ubuntu, or <code>dnf needs-restarting</code> on Fedora, report which services and programs are still running outdated code. Updates to the kernel or core system libraries, which everything depends on, still require a reboot.</p>
+<h3 id="weighing-the-trade-offs">Weighing the Trade-offs</h3>
+<p>So the fair summary is this: Linux lets you patch the system and keep working, and the fix arrives as soon as you restart the specific app. Windows usually asks you to restart the whole machine to get the same protection. Neither approach is free of trade-offs. Linux asks you to remember to restart what you’ve patched, while Windows trades that responsibility for a more forceful, less flexible process.</p>
+<h3 id="conclusion-why-linux-suits-most-people">Conclusion: Why Linux Suits Most People</h3>
+<p>For most people, Linux is the better choice precisely because of how it handles updates. A forced restart is more than a minor inconvenience. It breaks concentration, closes documents you hadn’t saved, and interrupts the flow of a session that might have taken an hour to build. Linux spares you that disruption. Patches arrive quietly in the background, the fix takes effect when you next open the app, and your work continues uninterrupted. Over weeks and months, those avoided interruptions add up to longer, more focused sessions and work of noticeably better quality.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Fresh from Her Oven: Why I’m Spoiled Every Morning</title>
+    <link>posts/2026-11-05.html</link>
+    <guid isPermaLink="true">posts/2026-11-05.html</guid>
+    <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Golden, sesame-topped buns straight from my partner’s kitchen. A little love, a lot of warmth, and a reminder of why I’m the luckiest person at the breakfast table.]]></description>
+    <content:encoded><![CDATA[<h4 id="today-i-dont-wanna-talk-about-tech-today-i-just-want-to-brag-about-the-bread-my-partner-baked">Today I don&#39;t wanna talk about tech. Today I just want to brag about the bread my partner baked!</h4>
+<p><img src="img/2026-11-05-2.png" alt="preperation"></p>
+<p><img src="img/2026-11-05-1.png" alt="breads"></p>
+<h4 id="my-partner-baked-these-fresh-and-im-completely-spoiled-golden-tops-sesame-sprinkled-on-top-soft-and-fluffy-inside-every-loaf-comes-from-her-own-hands-and-i-love-her-for-it">My partner baked these fresh, and I’m completely spoiled. Golden tops, sesame sprinkled on top, soft and fluffy inside. Every loaf comes from her own hands, and I love her for it.</h4>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>A Very Simple RSS Reader for Linux</title>
+    <link>posts/2026-11-02.html</link>
+    <guid isPermaLink="true">posts/2026-11-02.html</guid>
+    <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Here I am introducing the brand new simplest RSS reader for linux]]></description>
+    <content:encoded><![CDATA[<h3 id="hello-linux-community-introducing-my-simple-rss-reader--built-with-proxy-flexibility-in-mind">Hello, Linux community! Introducing my simple RSS reader — built with proxy flexibility in mind.</h3>
+<p>Hello, people!</p>
+<p>After moving to China, I started running into quite a few limitations when using Linux applications, largely due to the Great Firewall (GFW). It made me rethink how I handle network connections on my Linux desktop.</p>
+<p>I&#39;m not particularly fond of using TUN mode or system-wide proxy settings on Linux. In my experience, they can sometimes be glitchy, and I don&#39;t like the idea of routing all my system traffic through a proxy when only certain applications actually need one.</p>
+<p>What I really wanted was something much simpler: <strong>the ability to configure a proxy directly within an application, so that only the traffic from that particular app goes through the proxy, leaving everything else on my system untouched.</strong></p>
+<p>That became the primary motivation behind this little project.</p>
+<p>I started developing a simple RSS reader, with one main goal in mind: <strong>making proxy configuration as easy and straightforward as possible.</strong> No need to mess around with system-wide network settings or rely on TUN mode just to get an individual application working.</p>
+<p>Along the way, I realized that I also wanted more control over the reading experience. So I added support for custom fonts and font sizes, allowing users to personalize the interface and make reading more comfortable.</p>
+<p>And here we are! The first stable version, <a href="https://github.com/solar-song/Simple-RSS-Reader">Simple RSS Reader v1.0</a>, is finally ready.</p>
+<p><img src="img/2026-11-02.png" alt="Screenshot of Simple RSS Reader"></p>
+<p>I&#39;ve been using and testing it for quite some time, and so far, I haven&#39;t run into any new bugs. Of course, there&#39;s always room for improvement, and I have plenty of ideas for additional features down the road.</p>
+<p>This is a relatively small project, but I built it to solve a problem I personally encountered, and I hope it might be useful to someone else facing similar frustrations.</p>
+<p>I&#39;m happy to share it with the Linux community!</p>
+<p>If you&#39;re interested, give it a try. Feedback, suggestions, and bug reports are always welcome. They will help me make this little application better.</p>
+<p>Thanks for checking it out, and happy reading! </p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>A Beginner’s Guide to Email Aliases: Protect Your Privacy Online</title>
+    <link>posts/2026-10-30.html</link>
+    <guid isPermaLink="true">posts/2026-10-30.html</guid>
+    <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Your Email Address Is More Exposed Than You Think]]></description>
+    <content:encoded><![CDATA[<h3 id="why-this-matters-a-recent-example">Why This Matters: A Recent Example</h3>
+<p>In October 2026, the game company Capcom confirmed a data breach affecting its Capcom ID service. According to the company, 11,774,247 email addresses were leaked along with account details such as creation dates, login dates, and the IP address used at the last login. Most accounts didn’t have passwords stolen, but the leaked email addresses are still a problem. Capcom warned users to watch out for suspicious emails, since attackers can use leaked addresses to send convincing phishing messages that pretend to come from the company. <a href="https://www.notebookcheck.net/Capcom-confirms-major-data-breach-affecting-more-than-11-7-million-Capcom-ID-accounts-worldwide.1431069.0.html">source</a></p>
+<p>This shows a common risk. If you use one email address for everything, such as games, shopping, newsletters, and banking, then one leak connects all of those accounts to you. Anyone who gets that address can target you across all of them.</p>
+<p>An <strong>email alias</strong> is a simple way to reduce this risk.</p>
+<h3 id="what-is-an-email-alias">What Is an Email Alias?</h3>
+<p>An email alias is a second email address that forwards messages to your real inbox. You can make a different alias for each website or service. If one alias gets leaked or starts receiving spam, you can turn it off or delete it, and your main address stays private.</p>
+<p>Think of it like giving out a different phone number for each store you shop at. Your real number stays hidden, and you can stop a single number without changing your whole phone line.</p>
+<h3 id="option-1-apple-hide-my-email-for-iphone-and-mac-users">Option 1: Apple Hide My Email (for iPhone and Mac users)</h3>
+<p>If you use an iPhone or iCloud account, this is often the easiest option.</p>
+<ol>
+<li>Open <strong>Settings</strong> on your iPhone.</li>
+<li>Tap your <strong>name</strong> at the top.</li>
+<li>Tap <strong>iCloud</strong>.</li>
+<li>Tap <strong>Hide My Email</strong>.</li>
+<li>Tap <strong>Create New Address</strong>, give it a label (like “Shopping”), and tap <strong>Continue</strong>.</li>
+<li>Use the new address when signing up for a website or app.</li>
+</ol>
+<p>Messages sent to that address will arrive in your normal inbox.</p>
+<h3 id="option-2-firefox-relay-works-on-any-device">Option 2: Firefox Relay (works on any device)</h3>
+<p>Firefox Relay is a free service from Mozilla, the company behind Firefox.</p>
+<ol>
+<li>Go to <strong>relay.firefox.com</strong> and sign in with a Firefox account (free to create).</li>
+<li>Click <strong>Create a mask</strong> (Mozilla’s name for an alias).</li>
+<li>Copy the new address.</li>
+<li>Use it when signing up for a service. Emails sent to it will be forwarded to your real inbox.</li>
+</ol>
+<p>You can disable or delete any mask at any time from the same page.</p>
+<h3 id="tips-for-using-aliases-well">Tips for Using Aliases Well</h3>
+<ul>
+<li><strong>Use a different alias for each service.</strong> Create one for games, one for shopping, and one for newsletters.</li>
+<li><strong>Turn off aliases that get spam.</strong> If an alias receives unwanted mail, disable it. This is one of the main benefits of aliases.</li>
+<li><strong>Keep your real address for important accounts.</strong> Use your main email for banking, taxes, and government services, where you need a reliable address.</li>
+<li><strong>Still be careful with emails.</strong> Even with aliases, check the sender before clicking links, and go directly to a website instead of using links in unexpected emails.</li>
+<li><strong>Save your aliases in a password manager.</strong> This helps you remember which alias went with which account.</li>
+</ul>
+<h3 id="quick-checklist">Quick Checklist</h3>
+<ol>
+<li>Pick a method: Apple Hide My Email,  or Firefox Relay.</li>
+<li>Create an alias for your next sign-up.</li>
+<li>Give each service its own alias when possible.</li>
+<li>Disable any alias that starts getting spam.</li>
+<li>Stay alert for phishing emails, especially after a known data breach.</li>
+</ol>
+<p>Using email aliases takes only a few minutes to set up, and it can limit the damage when a company like Capcom has a breach. Your real email address stays out of the spotlight, and you stay in control of who can reach you.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Why the GUI version of Clash is so glitchy?</title>
+    <link>posts/2026-10-27.html</link>
+    <guid isPermaLink="true">posts/2026-10-27.html</guid>
+    <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[A frustrating experience with the Linux RPM build of Clash Verge Rev, and why I switched to a terminal-based alternative.]]></description>
+    <content:encoded><![CDATA[<p>I recently tried a proxy client called <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> on Linux. It’s often described as one of the most popular Clash clients, and I’d been told the same thing when I asked ChatGPT and Claude for recommendations.</p>
+<p>Before version 2.5.8, everything worked fine. After I installed 2.5.8 from the RPM package, which is the installer format used by Fedora and Red Hat, things started falling apart. My connection kept cutting out in short bursts, and the problems got worse over time. At one point I couldn’t even watch a simple YouTube video in 1080p without it stuttering and buffering constantly.</p>
+<p>That was my limit. I wanted something that actually works well on Linux.</p>
+<h3 id="finding-a-better-option">Finding a Better Option</h3>
+<p>While searching, I came across <a href="https://github.com/wnlen/clash-for-linux">clash-for-linux</a>. Unlike Clash Verge Rev, it’s a TUI (terminal user interface), meaning it runs in a text-based terminal window instead of a graphical app with buttons and menus. That might sound intimidating, but setup was just a few simple commands. Once it was running, I could set it to start automatically with my computer and mostly forget about it.</p>
+<p>The difference was immediate. The GUI version used more system resources, responded slowly, and kept glitching. The terminal version ran smoothly, responded quickly, and stayed out of my way for the rest of the day.</p>
+<p>If you’re having similar problems with a graphical proxy client on Linux, it may be worth trying a lightweight terminal option. Just be sure to read the setup instructions carefully, since they’re written for people comfortable with the command line.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Markdown Editor Recommendation</title>
+    <link>posts/2026-10-22-2.html</link>
+    <guid isPermaLink="true">posts/2026-10-22-2.html</guid>
+    <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[My experience trying several Markdown editors for blog writing, and the one I ended up choosing]]></description>
+    <content:encoded><![CDATA[<p>I write my blog posts in Markdown, a simple plain-text format where symbols like <code>#</code> for headings and <code>**</code> for bold show how the text should look. I wanted an editor that looks similar to <strong>Obsidian</strong>, a popular app for taking notes in Markdown. I started with <strong>Ghostwriter</strong>, a lightweight Markdown editor that was easy to install. On Fedora, a Linux distribution, I only needed to run <code>sudo dnf install ghostwriter</code>, and it was ready to use.</p>
+<p>Unfortunately, Ghostwriter had several serious display problems on Fedora 44, and they slowed down my writing. So I kept looking for a better option.</p>
+<p>Many people wonder why I didn’t simply use Obsidian. Obsidian is an excellent app, and I like it. It organizes everything into “vaults,” which are collections of notes that you can keep in one place. I have also installed a few community plugins to manage attachments and photos, and they work well for notes. However, the way Obsidian organizes vaults doesn’t match how I store my blog posts. What I need is a simple editor where I can open a Markdown file, write for the blog, and not worry about accidentally disrupting my blog’s folder structure.</p>
+<p>My search ended with <strong>MarkText</strong>. It is heavier than Ghostwriter, but it does two things I need very well:</p>
+<ul>
+<li><p>First, its live preview shows the formatted result as I type, so I can see headings, bold text, and links without switching windows. </p>
+</li>
+<li><p>Second, once I add headings, it automatically builds a clickable outline on the left side of the screen. I can jump between sections of a long post with one click, which saves a lot of time.</p>
+</li>
+</ul>
+<img title="" src="img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
+
+<p>If you want a Markdown editor that is simple and focused on writing, rather than a full note-taking system like Obsidian, I highly recommend MarkText.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>Easy Terminal Proxy Switching on Linux: A Beginner’s Guide</title>
+    <link>posts/2026-10-22.html</link>
+    <guid isPermaLink="true">posts/2026-10-22.html</guid>
+    <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[A guide for setup alias and bash function for easier proxy ON & OFF]]></description>
+    <content:encoded><![CDATA[<p>Sometimes you want your terminal to send its internet traffic through a VPN or proxy, and sometimes you don’t. Typing long export commands every time gets tedious. This guide shows you how to add three short commands to your terminal:</p>
+<ul>
+<li><code>proxy_on</code> turns the proxy on for the current terminal.</li>
+<li><code>proxy_off </code>turns it off.</li>
+<li><code>proxy_status</code> shows whether it’s on and where it’s pointing.</li>
+</ul>
+<h3 id="before-you-start">Before You Start</h3>
+<p>You need three things:</p>
+<p>A running proxy client. This guide uses Clash, which listens on a local “port” (a numbered doorway on your computer) of 7897. Open your Clash app and confirm it’s running. If you use a different client, or a different port, you’ll change the number in the steps below.</p>
+<p>A terminal. Any terminal app works.</p>
+<p>Basic comfort with a text editor. You’ll paste a block of text into a file called .bashrc, which is a settings file that runs every time you open a terminal.</p>
+<blockquote>
+<p><strong>What’s a proxy?</strong> A proxy is a middleman. Your traffic goes to the proxy first, and the proxy forwards it to the internet. This can hide your location or route traffic through a VPN. When the proxy is off, your traffic goes straight out as usual.</p>
+</blockquote>
+<h3 id="step-1-open-your-bashrc-file">Step 1: Open Your <code>.bashrc</code> File</h3>
+<p>In your terminal, type:</p>
+<pre><code class="language-bash">nano ~/.bashrc</code></pre>
+<p><code>nano</code> is a simple text editor that runs in the terminal. The <code>~</code> symbol means your home folder, so <code>~/.bashrc</code> is your personal settings file.</p>
+<p>Scroll to the bottom of the file using the arrow keys.</p>
+<h3 id="step-2-paste-the-proxy-functions">Step 2: Paste the Proxy Functions</h3>
+<p>Copy the block below and paste it at the bottom of the file:</p>
+<pre><code class="language-bash"># --- Proxy Toggles for Clash Mixed Port ---
+proxy_on() {
+    export http_proxy="http://127.0.0.1:7897"
+    export https_proxy="http://127.0.0.1:7897"
+    export HTTP_PROXY="http://127.0.0.1:7897"
+    export HTTPS_PROXY="http://127.0.0.1:7897"
+    export all_proxy="socks5h://127.0.0.1:7897"
+    export ALL_PROXY="socks5h://127.0.0.1:7897"
+    alias sudo='sudo -E '
+    echo -e "\e[1;32m[✔] Terminal proxy routing enabled (127.0.0.1:7897), sudo -E enabled\e[0m"
+}
+
+proxy_off() {
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
+    unalias sudo 2&gt;/dev/null
+    echo -e "\e[1;31m[✘] Terminal proxy routing disabled. sudo -E disabled\e[0m"
+}
+
+proxy_status() {
+    echo "Current Proxy Configuration:"
+    echo "----------------------------"
+    echo "http_proxy  = $http_proxy"
+    echo "https_proxy = $https_proxy"
+    echo "all_proxy   = $all_proxy"
+    if alias sudo &amp;&gt;/dev/null; then
+        echo "sudo alias  = active (sudo -E)"
+    else
+        echo "sudo alias  = inactive"
+    fi
+}</code></pre>
+<p>Save and exit <code>nano</code>: press <code>Ctrl + O</code>, then <code>Enter</code> to save, then <code>Ctrl + X</code> to exit.</p>
+<blockquote>
+<p><strong>Tip:</strong> Only paste this block once. If you paste it twice, the functions get defined twice. Nothing breaks, but the file gets messy.</p>
+</blockquote>
+<h3 id="step-3-load-the-new-commands">Step 3: Load the New Commands</h3>
+<p>Your terminal only reads <code>.bashrc</code> when it starts, so either open a new terminal window or run:</p>
+<pre><code class="language-bash">source ~/.bashrc</code></pre>
+<h3 id="step-4-try-it-out">Step 4: Try It Out</h3>
+<p><strong>Turn the proxy on:</strong></p>
+<pre><code class="language-bash">proxy_on</code></pre>
+<p>You should see a green message confirming the proxy is enabled.</p>
+<p><strong>Check the status:</strong></p>
+<pre><code class="language-bash">proxy_status</code></pre>
+<p>This prints the proxy addresses currently in use and whether the <code>sudo</code> shortcut is active.</p>
+<p><strong>Turn the proxy off:</strong></p>
+<pre><code class="language-bash">proxy_off</code></pre>
+<p>You should see a red message confirming it’s disabled.</p>
+<h3 id="step-5-confirm-it-really-works">Step 5: Confirm It Really Works</h3>
+<p>Commands like <code>proxy_on</code> only change your terminal, so the best test is to see whether your internet address changes. Run this while the proxy is on:</p>
+<pre><code class="language-bash">curl https://ifconfig.me</code></pre>
+<p>Then run <code>proxy_off</code> and try again. If the address differs between the two runs, the proxy is working. (<code>curl</code> is a command-line tool for fetching web pages. It’s installed on most Linux systems. On Fedora, you can install it with <code>sudo dnf install curl</code> if needed.)</p>
+<h3 id="how-it-works-in-plain-english">How It Works, in Plain English</h3>
+<p>Each function does a simple job:</p>
+<ul>
+<li><code>proxy_on</code> sets several <em>environment variables</em>. These are named notes that programs read when they start. Many command-line tools, such as <code>curl</code>, <code>wget</code>, and <code>git</code>, check these notes and send their traffic through the proxy if they find one. The variables come in both lowercase and uppercase because different programs look for different versions.</li>
+<li>The <code>socks5h</code> lines use a different proxy protocol called SOCKS5. The <code>h</code> at the end means DNS lookups (converting website names into addresses) also go through the proxy, which avoids leaking which sites you visit.</li>
+<li><code>alias sudo=&#39;sudo -E &#39;</code> creates a shortcut so that when you type <code>sudo</code>, it runs as <code>sudo -E</code>. The <code>-E</code> flag keeps your proxy settings when running commands as administrator. Without it, <code>sudo</code> usually wipes your environment, and proxy settings disappear.</li>
+<li><code>proxy_off</code> removes all these variables and the <code>sudo</code> shortcut. The <code>2&gt;/dev/null</code> part hides any error message if the alias was never set.</li>
+<li><code>proxy_status</code> prints the current values so you can see what’s active.</li>
+</ul>
+<h3 id="troubleshooting">Troubleshooting</h3>
+<p><strong>command not found: proxy_on</strong><br>You probably didn’t reload your settings. Open a new terminal or run <code>source ~/.bashrc</code>. Also check that you pasted the code into <code>~/.bashrc</code> and not a different file.</p>
+<p><strong>The proxy is on, but websites don’t load</strong><br>Your proxy client probably isn’t running, or it’s using a different port. Open your Clash settings, find the “Mixed Port,” and compare it with <code>7897</code>. If it differs, edit the numbers in <code>.bashrc</code>.</p>
+<p><strong><code>curl</code> shows the same address with the proxy on and off</strong><br>Check that Clash is running and that “system proxy” or “allow LAN” is enabled in its settings, depending on your version. Then run <code>proxy_status</code> to confirm the variables are set.</p>
+<p><strong>Some apps ignore the proxy</strong><br>This is normal. These settings only affect programs started from the terminal where you ran <code>proxy_on</code>. Graphical apps like your web browser don’t read terminal settings, so you’ll need to set their proxy separately.</p>
+<h3 id="limitations-to-know">Limitations to Know</h3>
+<ul>
+<li>The change applies only to the terminal window where you ran <code>proxy_on</code>. Other windows stay unchanged.</li>
+<li>Closing the terminal clears the settings. This is a feature: each new terminal starts with no proxy unless you ask for one.</li>
+<li>Some programs need their own proxy configuration and ignore these variables.</li>
+</ul>
+<h3 id="make-it-your-own">Make It Your Own</h3>
+<p>If your proxy uses a different port, change <code>7897</code> everywhere it appears in the block. It appears in eight places, so use your editor’s find-and-replace feature to update them all at once. In <code>nano</code>, press <code>Ctrl + \</code>, type the old number, press <code>Enter</code>, type the new number, and press <code>Enter</code> again.</p>
+<p>Once you’re comfortable, you can also add a shortcut to the top of your file so you only have to change the port in one spot:</p>
+<pre><code class="language-bash">PROXY_PORT=7897</code></pre>
+<p>Then replace each <code>127.0.0.1:7897</code> with <code>127.0.0.1:$PROXY_PORT</code>, and the same for <code>socks5h</code>. Now a future port change takes a single edit.</p>
+<hr>
+<p>That’s it. You now have a simple switch for your terminal’s internet routing, and you understand what each piece does. If something doesn’t behave the way this guide describes, check the troubleshooting section first, then try <code>proxy_status</code> to see what’s actually set.</p>
+]]></content:encoded>
+  </item>
+  <item>
+    <title>A Complete Overhaul For My Personal Tech Blog!</title>
+    <link>posts/2026-10-21.html</link>
+    <guid isPermaLink="true">posts/2026-10-21.html</guid>
+    <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Here you are my first post! Announcement for my brand new personal tech blog come online!]]></description>
+    <content:encoded><![CDATA[<p>Hello, everyone, and welcome, fellow netizens! I’m popping in to say hi.</p>
+<p>My personal website has been sitting on GitHub for about ten years without an update, so it’s time for a renovation. Today I’m launching my brand-new tech blog. It’s simple by design: I write posts in local Markdown files, convert them to HTML, and push them to a remote repository for online display.</p>
+<p>I did look at plenty of free blog templates on GitHub, but I didn’t need much beyond the basics. As a developer, I mostly use Markdown for code logs and notes, so what I really wanted was a blog that turns Markdown into HTML and serves it online. That’s it.</p>
+<p>With some help from AI, I built this template in a few hours and spent another hour or two testing it. And ta-da, it’s done! Consider this the official launch day announcement.</p>
+<p>Now, please enjoy this lovely cat to brighten your day a little :3</p>
+<p><img src="img/cuttiecat.jpg" alt="cuttiecat"></p>
+]]></content:encoded>
+  </item>
+</channel>
+</rss>

@@ -255,6 +255,26 @@ footer { margin-top: 3rem; }
   display: block; width: 100%; height: auto; margin: 2rem auto;
   border: 2px solid var(--border);
 }
-.prose ul { list-style: disc; padding-left: 1.5rem; }
-.prose li { margin-top: .25rem; padding-left: .25rem; }
-.prose li::marker { color: var(--accent); }
+.prose ul, .prose ol {
+  padding-inline-start: 1.6rem; /* same left indent for bullets and numbers */
+  margin-left: 0;
+}
+.prose ul { list-style: disc; }
+/* custom numeric markers so we can control spacing and alignment */
+.prose ol {
+  list-style: none; /* hide browser numbers */
+  counter-reset: prose-ol;
+}
+.prose li { margin-top: .25rem; padding-left: 0; }
+.prose ul li::marker { color: var(--accent); }
+.prose ol li::before {
+  counter-increment: prose-ol;
+  content: counter(prose-ol) ".";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  width: 1.2rem; /* fixed width for number column */
+  text-align: right;
+}
+.prose ol li { position: relative; padding-left: 1.6rem; }
+.prose ol li::marker { display: none; }

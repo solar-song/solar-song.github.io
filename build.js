@@ -157,47 +157,54 @@ function formatDate(d) {
       let contentHtml = (p.contentHtml || '');
       try {
         if (siteUrl) {
-          // make src attributes absolute
-          contentHtml = contentHtml.replace(/(src\s*=\s*\")(?!https?:|\/\/|data:)([^\"]+)(\")/gi, (m, pre, url, post) => {
-            let newUrl = url;
-            if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
-            else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
-            return `${pre}${newUrl}${post}`;
+          // helper: resolve a relative url against the post URL (p.url)
+          const resolveAgainstPost = (url) => {
+            // strip leading ./
+            url = url.replace(/^\.\//, '');
+            // absolute or protocol-relative or data URI -> return unchanged
+            if (/^(https?:|\/\/|data:)/i.test(url)) return url;
+            if (url.startsWith('/')) return siteUrl + url;
+            // compute directory of the post, ensure leading '/'
+            const postPath = '/' + p.url.replace(/^\/?/, '');
+            const postDir = path.posix.dirname(postPath);
+            const resolved = path.posix.normalize(path.posix.join(postDir, url));
+            return siteUrl + resolved;
+          };
+
+          // src="..."
+          contentHtml = contentHtml.replace(/(src\s*=\s*\")(.*?)\"/gi, (m, pre, url) => {
+            // keep unchanged if already absolute/protocol-relative/data
+            if (/^(https?:|\/\/|data:)/i.test(url)) return `${pre}${url}\"`;
+            const newUrl = resolveAgainstPost(url);
+            return `${pre}${newUrl}\"`;
           });
 
-          contentHtml = contentHtml.replace(/(src\s*=\s*\')(?!https?:|\/\/|data:)([^\']+)(\')/gi, (m, pre, url, post) => {
-            let newUrl = url;
-            if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
-            else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
-            return `${pre}${newUrl}${post}`;
+          // src='...'
+          contentHtml = contentHtml.replace(/(src\s*=\s*\')(.*?)\'/gi, (m, pre, url) => {
+            if (/^(https?:|\/\/|data:)/i.test(url)) return `${pre}${url}\'`;
+            const newUrl = resolveAgainstPost(url);
+            return `${pre}${newUrl}\'`;
           });
 
-          // make srcset attributes absolute (handles multiple comma-separated sources)
+          // srcset="..."
           contentHtml = contentHtml.replace(/(srcset\s*=\s*\")(.*?)\"/gi, (m, pre, val) => {
             const parts = val.split(',').map(s => s.trim()).map(entry => {
               const segs = entry.split(/\s+/);
               const url = segs[0];
               const desc = segs.slice(1).join(' ');
-              let newUrl = url;
-              if (!/^(https?:|\/\/|data:)/i.test(url)) {
-                if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
-                else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
-              }
+              const newUrl = /^(https?:|\/\/|data:)/i.test(url) ? url : resolveAgainstPost(url);
               return desc ? `${newUrl} ${desc}` : newUrl;
             });
             return `${pre}${parts.join(', ')}\"`;
           });
 
+          // srcset='...'
           contentHtml = contentHtml.replace(/(srcset\s*=\s*\')(.*?)\'/gi, (m, pre, val) => {
             const parts = val.split(',').map(s => s.trim()).map(entry => {
               const segs = entry.split(/\s+/);
               const url = segs[0];
               const desc = segs.slice(1).join(' ');
-              let newUrl = url;
-              if (!/^(https?:|\/\/|data:)/i.test(url)) {
-                if (url.startsWith('/')) newUrl = `${siteUrl}${url}`;
-                else newUrl = `${siteUrl}/${url.replace(/^\.\/?/, '')}`;
-              }
+              const newUrl = /^(https?:|\/\/|data:)/i.test(url) ? url : resolveAgainstPost(url);
               return desc ? `${newUrl} ${desc}` : newUrl;
             });
             return `${pre}${parts.join(', ')}\'`;

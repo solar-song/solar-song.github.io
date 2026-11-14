@@ -10,7 +10,7 @@
     <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-14.html</guid>
     <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Eating well improved my life, but it was the everyday movement I didn’t notice at first that made the biggest difference to my sleep.]]></description>
-    <content:encoded><![CDATA[<p><img src="https://solar-song.github.io/img/2026-11-14.jpg" alt="SleepCat"></p>
+    <content:encoded><![CDATA[<p><img src="https://solar-song.github.io/posts/img/2026-11-14.jpg" alt="SleepCat"></p>
 <p>For a long time, I believed that eating healthy was the key to a good night’s sleep. I cleaned up my diet, cut back on late-night snacks, and felt better in many ways. My energy was steadier, my mood was lighter, and I felt more like myself. But my sleep only improved so much. Some nights I still lay awake staring at the ceiling, even on days when I had eaten perfectly.</p>
 <p>It took me a while to notice what was missing. The thing that seemed to decide whether I slept well was not what I ate. It was how much I moved.</p>
 <p>I don’t mean I suddenly became a gym person. My routine is pretty ordinary. I cook for myself most nights, which means standing, chopping, stirring, and walking back and forth between the counter and the stove. I do my chores by hand instead of putting them off. And when I run out of groceries, I walk about a kilometer to the supermarket and carry everything home. None of these things feels like exercise on its own. But together, they add up to a real amount of movement across the day.</p>
@@ -52,8 +52,8 @@
     <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
     <description><![CDATA[Golden, sesame-topped buns straight from my partner’s kitchen. A little love, a lot of warmth, and a reminder of why I’m the luckiest person at the breakfast table.]]></description>
     <content:encoded><![CDATA[<h4 id="today-i-dont-wanna-talk-about-tech-today-i-just-want-to-brag-about-the-bread-my-partner-baked">Today I don&#39;t wanna talk about tech. Today I just want to brag about the bread my partner baked!</h4>
-<p><img src="https://solar-song.github.io/img/2026-11-05-2.png" alt="preperation"></p>
-<p><img src="https://solar-song.github.io/img/2026-11-05-1.png" alt="breads"></p>
+<p><img src="https://solar-song.github.io/posts/img/2026-11-05-2.png" alt="preperation"></p>
+<p><img src="https://solar-song.github.io/posts/img/2026-11-05-1.png" alt="breads"></p>
 <h4 id="my-partner-baked-these-fresh-and-im-completely-spoiled-golden-tops-sesame-sprinkled-on-top-soft-and-fluffy-inside-every-loaf-comes-from-her-own-hands-and-i-love-her-for-it">My partner baked these fresh, and I’m completely spoiled. Golden tops, sesame sprinkled on top, soft and fluffy inside. Every loaf comes from her own hands, and I love her for it.</h4>
 ]]></content:encoded>
   </item>
@@ -72,7 +72,7 @@
 <p>I started developing a simple RSS reader, with one main goal in mind: <strong>making proxy configuration as easy and straightforward as possible.</strong> No need to mess around with system-wide network settings or rely on TUN mode just to get an individual application working.</p>
 <p>Along the way, I realized that I also wanted more control over the reading experience. So I added support for custom fonts and font sizes, allowing users to personalize the interface and make reading more comfortable.</p>
 <p>And here we are! The first stable version, <a href="https://github.com/solar-song/Simple-RSS-Reader">Simple RSS Reader v1.0</a>, is finally ready.</p>
-<p><img src="https://solar-song.github.io/img/2026-11-02.png" alt="Screenshot of Simple RSS Reader"></p>
+<p><img src="https://solar-song.github.io/posts/img/2026-11-02.png" alt="Screenshot of Simple RSS Reader"></p>
 <p>I&#39;ve been using and testing it for quite some time, and so far, I haven&#39;t run into any new bugs. Of course, there&#39;s always room for improvement, and I have plenty of ideas for additional features down the road.</p>
 <p>This is a relatively small project, but I built it to solve a problem I personally encountered, and I hope it might be useful to someone else facing similar frustrations.</p>
 <p>I&#39;m happy to share it with the Linux community!</p>
@@ -163,7 +163,7 @@
 <li><p>Second, once I add headings, it automatically builds a clickable outline on the left side of the screen. I can jump between sections of a long post with one click, which saves a lot of time.</p>
 </li>
 </ul>
-<img title="" src="https://solar-song.github.io/img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
+<img title="" src="https://solar-song.github.io/posts/img/Screenshot_20261022_193654.png" alt="" data-align="inline" />
 
 <p>If you want a Markdown editor that is simple and focused on writing, rather than a full note-taking system like Obsidian, I highly recommend MarkText.</p>
 ]]></content:encoded>
@@ -286,7 +286,7 @@ proxy_status() {
 <p>I did look at plenty of free blog templates on GitHub, but I didn’t need much beyond the basics. As a developer, I mostly use Markdown for code logs and notes, so what I really wanted was a blog that turns Markdown into HTML and serves it online. That’s it.</p>
 <p>With some help from AI, I built this template in a few hours and spent another hour or two testing it. And ta-da, it’s done! Consider this the official launch day announcement.</p>
 <p>Now, please enjoy this lovely cat to brighten your day a little :3</p>
-<p><img src="https://solar-song.github.io/img/cuttiecat.jpg" alt="cuttiecat"></p>
+<p><img src="https://solar-song.github.io/posts/img/cuttiecat.jpg" alt="cuttiecat"></p>
 ]]></content:encoded>
   </item>
 </channel>

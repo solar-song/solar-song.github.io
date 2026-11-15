@@ -24,6 +24,7 @@
 
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a href="#main-content" class="skip">Skip to content</a>
 
   <header>
@@ -56,7 +57,8 @@
 
   <main id="main-content" class="wrap">
     <section class="hero">
-      <h1>Hello World!</h1>
+      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <h1 aria-label="Hello World!"><span class="type-text" data-text="Hello World!"></span><span class="cursor" aria-hidden="true">&nbsp;</span></h1>
       <a href="rss.xml" class="rss" aria-label="RSS Feed" title="RSS Feed">
         <svg viewBox="0 0 24 24"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
       </a>
@@ -98,5 +100,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="index-effects.js"></script>
 </body>
 </html>

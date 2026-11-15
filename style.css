@@ -172,7 +172,7 @@ footer { margin-top: 3rem; }
   .footer-inner { flex-direction: row; justify-content: space-between; padding-top: .75rem; }
 }
 
-/* ---------- Index page animations ---------- */
+/* ---------- Page animations ---------- */
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -222,8 +222,24 @@ footer { margin-top: 3rem; }
 .reveal { opacity: 0; }
 .reveal.visible { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
+/* Generic reveal-children */
+.reveal-children > * { opacity: 0; }
+.reveal-children.visible > * { animation: fadeUp 0.5s ease-out forwards; }
+
+/* Staggered reveal delays */
+.reveal-children.visible.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.reveal-children.visible.stagger > *:nth-child(2) { animation-delay: 70ms; }
+.reveal-children.visible.stagger > *:nth-child(3) { animation-delay: 140ms; }
+.reveal-children.visible.stagger > *:nth-child(4) { animation-delay: 210ms; }
+.reveal-children.visible.stagger > *:nth-child(5) { animation-delay: 280ms; }
+.reveal-children.visible.stagger > *:nth-child(6) { animation-delay: 350ms; }
+.reveal-children.visible.stagger > *:nth-child(7) { animation-delay: 420ms; }
+.reveal-children.visible.stagger > *:nth-child(8) { animation-delay: 490ms; }
+.reveal-children.visible.stagger > *:nth-child(9) { animation-delay: 560ms; }
+.reveal-children.visible.stagger > *:nth-child(10) { animation-delay: 630ms; }
+
+/* Post card hover effects */
 .posts.reveal-children > li {
-  opacity: 0;
   padding: 0.75rem;
   margin-left: -0.75rem;
   margin-right: -0.75rem;
@@ -237,13 +253,6 @@ footer { margin-top: 3rem; }
   box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 10%, transparent);
   border-color: var(--border);
 }
-.posts.reveal-children.visible > li { animation: fadeUp 0.5s ease-out forwards; }
-.posts.reveal-children.visible > li:nth-child(1) { animation-delay: 0ms; }
-.posts.reveal-children.visible > li:nth-child(2) { animation-delay: 70ms; }
-.posts.reveal-children.visible > li:nth-child(3) { animation-delay: 140ms; }
-.posts.reveal-children.visible > li:nth-child(4) { animation-delay: 210ms; }
-.posts.reveal-children.visible > li:nth-child(5) { animation-delay: 280ms; }
-.posts.reveal-children.visible > li:nth-child(6) { animation-delay: 350ms; }
 
 .rss svg { transition: transform 0.2s, color 0.2s; }
 .rss:hover svg { transform: rotate(15deg) scale(1.1); color: var(--accent); }
@@ -341,7 +350,7 @@ footer { margin-top: 3rem; }
   .hero-canvas { display: none; }
   .cursor { display: none; }
   .cursor-glow { display: none; }
-  .reveal, .posts.reveal-children > li { opacity: 1; }
+  .reveal, .reveal-children > * { opacity: 1; }
 }
 
 /* ---------- About / prose pages ---------- */

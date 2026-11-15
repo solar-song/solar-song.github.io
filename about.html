@@ -23,6 +23,7 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a href="#main-content" class="skip">Skip to content</a>
 
   <header>
@@ -57,9 +58,9 @@
 
     </nav>
 
-    <h1 class="page-title">About Me</h1>
+    <h1 class="page-title" data-reveal>About Me</h1>
 
-    <div class="prose">
+    <div class="prose" data-reveal>
 
 
       <img src="assets/about.jpg" alt="About this blog" onerror="this.style.display='none'">
@@ -106,5 +107,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="effects.js"></script>
 </body>
 </html>

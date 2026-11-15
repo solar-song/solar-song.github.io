@@ -20,6 +20,7 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a href="#main-content" class="skip">Skip to content</a>
 
   <header>
@@ -52,15 +53,15 @@
   <main id="main-content" class="wrap page">
     <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
 
-    <h1 class="page-title">All Posts</h1>
+    <h1 class="page-title" data-reveal>All Posts</h1>
 
     <div class="prose">
-      <p>Browse all posts. Use the year filters or pagination controls to navigate.</p>
+      <p data-reveal>Browse all posts. Use the year filters or pagination controls to navigate.</p>
 
-      <div id="year-filters" style="margin:1rem 0; display:flex; gap:.5rem; flex-wrap:wrap"></div>
+      <div id="year-filters" data-reveal-children data-stagger style="margin:1rem 0; display:flex; gap:.5rem; flex-wrap:wrap"></div>
 
-      <ul class="posts" id="all-posts-list"></ul>
-      <div id="pagination" style="margin-top:1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
+      <ul class="posts" id="all-posts-list" data-reveal-children data-stagger></ul>
+      <div id="pagination" data-reveal style="margin-top:1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
     </div>
   </main>
 
@@ -198,5 +199,6 @@
       document.addEventListener('DOMContentLoaded', init);
     })();
   </script>
+  <script src="effects.js"></script>
 </body>
 </html>

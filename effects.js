@@ -1,4 +1,4 @@
-// Index-page only interactive animations
+// Site-wide interactive animations (works on index, about, all-posts, and post pages)
 (function () {
   'use strict';
 
@@ -18,7 +18,7 @@
     updateScrollProgress();
   }
 
-  // ---------- Hero typing animation ----------
+  // ---------- Hero typing animation (index only) ----------
   const typeEls = document.querySelectorAll('.type-text');
   typeEls.forEach(el => {
     const text = el.dataset.text || '';
@@ -38,7 +38,7 @@
     type();
   });
 
-  // ---------- Hero constellation canvas ----------
+  // ---------- Hero constellation canvas (index only) ----------
   const canvas = document.getElementById('hero-canvas');
   if (canvas && !prefersReducedMotion && isFinePointer) {
     const ctx = canvas.getContext('2d');
@@ -215,14 +215,17 @@
     });
   }
 
-  // ---------- 3D tilt on post cards ----------
+  // ---------- 3D tilt on post cards (delegated so it survives dynamic re-renders) ----------
   function initTiltCards() {
     if (prefersReducedMotion) return;
-    document.querySelectorAll('.posts li').forEach(card => {
-      if (card.dataset.tiltBound) return;
-      card.dataset.tiltBound = 'true';
-      card.classList.add('tilt-card');
-      card.addEventListener('mousemove', e => {
+    document.querySelectorAll('.posts').forEach(list => {
+      if (list.dataset.tiltBound) return;
+      list.dataset.tiltBound = 'true';
+      list.classList.add('tilt-card');
+
+      list.addEventListener('mousemove', e => {
+        const card = e.target.closest('li');
+        if (!card || card.closest('.posts') !== list) return;
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -232,8 +235,14 @@
         const rotateY = ((x - cx) / cx) * 5;
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
+
+      list.addEventListener('mouseout', e => {
+        const card = e.target.closest('li');
+        if (!card) return;
+        const related = e.relatedTarget;
+        if (!related || !card.contains(related)) {
+          card.style.transform = '';
+        }
       });
     });
   }
@@ -284,17 +293,20 @@
     }
   }
 
-  // ---------- Scroll reveal for sections & post lists ----------
+  // ---------- Scroll reveal ----------
   function initReveals() {
-    const sections = document.querySelectorAll('#posts-featured, #posts');
-    const lists = document.querySelectorAll('#featured-list, #recent-list');
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const revealChildren = document.querySelectorAll('[data-reveal-children]');
 
-    sections.forEach(s => s.classList.add('reveal'));
-    lists.forEach(l => l.classList.add('reveal-children'));
+    revealEls.forEach(el => el.classList.add('reveal'));
+    revealChildren.forEach(el => {
+      el.classList.add('reveal-children');
+      if (el.dataset.stagger !== undefined) el.classList.add('stagger');
+    });
 
     if (prefersReducedMotion) {
-      sections.forEach(s => s.classList.add('visible'));
-      lists.forEach(l => l.classList.add('visible'));
+      revealEls.forEach(el => el.classList.add('visible'));
+      revealChildren.forEach(el => el.classList.add('visible'));
       initTiltCards();
       return;
     }
@@ -308,8 +320,8 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    sections.forEach(s => observer.observe(s));
-    lists.forEach(l => observer.observe(l));
+    revealEls.forEach(el => observer.observe(el));
+    revealChildren.forEach(el => observer.observe(el));
 
     initTiltCards();
   }

@@ -23,6 +23,7 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a href="#main-content" class="skip">Skip to content</a>
 
   <header>
@@ -55,9 +56,9 @@
   <main id="main-content" class="wrap page">
     <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
 
-    <h1 class="page-title">Why the GUI version of Clash is so glitchy?</h1>
+    <h1 class="page-title" data-reveal>Why the GUI version of Clash is so glitchy?</h1>
 
-    <div class="prose">
+    <div class="prose" data-reveal>
       <div class="date">Published: <time>Oct 27, 2026</time></div>
       <p>I recently tried a proxy client called <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> on Linux. It’s often described as one of the most popular Clash clients, and I’d been told the same thing when I asked ChatGPT and Claude for recommendations.</p>
 <p>Before version 2.5.8, everything worked fine. After I installed 2.5.8 from the RPM package, which is the installer format used by Fedora and Red Hat, things started falling apart. My connection kept cutting out in short bursts, and the problems got worse over time. At one point I couldn’t even watch a simple YouTube video in 1080p without it stuttering and buffering constantly.</p>
@@ -83,5 +84,6 @@
 
   <script>window.__SITE_BASE = "../";</script>
   <script src="../script.js"></script>
+  <script src="../effects.js"></script>
 </body>
 </html>

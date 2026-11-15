@@ -38,6 +38,34 @@
     type();
   });
 
+  // ---------- Text decode / scramble animation (tech-style reveal) ----------
+  const decodeEls = document.querySelectorAll('.decode-text');
+  decodeEls.forEach(el => {
+    const finalText = el.dataset.decodeText || '';
+    if (prefersReducedMotion) {
+      el.textContent = finalText;
+      return;
+    }
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
+    const scramble = finalText.split('').map(ch => (ch === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)]));
+    el.textContent = scramble.join('');
+
+    let resolved = 0;
+    const interval = setInterval(() => {
+      if (resolved >= finalText.length) {
+        clearInterval(interval);
+        el.textContent = finalText;
+        return;
+      }
+      for (let i = resolved; i < finalText.length; i++) {
+        scramble[i] = finalText[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+      }
+      scramble[resolved] = finalText[resolved];
+      resolved++;
+      el.textContent = scramble.join('');
+    }, 55);
+  });
+
   // ---------- Hero constellation canvas (index only) ----------
   const canvas = document.getElementById('hero-canvas');
   if (canvas && !prefersReducedMotion && isFinePointer) {

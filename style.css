@@ -196,7 +196,8 @@ footer { margin-top: 3rem; }
 }
 .hero > *:not(.hero-canvas) { position: relative; z-index: 1; }
 
-.type-text {
+.type-text,
+.decode-text {
   background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--foreground)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -342,6 +343,94 @@ footer { margin-top: 3rem; }
 }
 .cursor-glow.active {
   opacity: 1;
+}
+
+/* ---------- About page extras ---------- */
+.about-page .page-title {
+  min-height: 1.2em;
+}
+.about-page .prose > img {
+  border-radius: 0.75rem;
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 12%, transparent);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.about-page .prose > img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.about-page .prose b {
+  color: var(--accent);
+}
+.about-page .prose > p:first-of-type {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.about-page .prose a:not(.btn) {
+  position: relative;
+  text-decoration: none;
+  color: var(--accent);
+}
+.about-page .prose a:not(.btn)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+.about-page .prose a:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.about-page .prose a:not(.btn):hover::after {
+  transform: scaleX(1);
+}
+
+.cta-card {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--muted) 35%, transparent);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.cta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--accent) 10%, transparent);
+  background: color-mix(in srgb, var(--muted) 50%, transparent);
+}
+.cta-card h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+.cta-card p {
+  opacity: 0.9;
+  margin: 0 0 1rem;
+}
+.cta-card .btn {
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cta-card .btn:hover {
+  background: color-mix(in srgb, var(--accent) 80%, var(--foreground));
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 @media (prefers-reduced-motion: reduce) {

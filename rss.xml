@@ -5,6 +5,85 @@
   <link>https://solar-song.github.io</link>
   <description>Ctrl+Craft updates</description>
   <item>
+    <title>Taskwarrior for Beginners: A Command-Line To-Do List That Gets Out of Your Way</title>
+    <link>https://solar-song.github.io/posts/2026-11-23.html</link>
+    <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-23.html</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[Taskwarrior is a command-line to-do manager for people who already live in the terminal. This guide covers installation and the core commands for adding/modifying/deleting to-do tasks.]]></description>
+    <content:encoded><![CDATA[<p>Just heard this news that <a href="https://www.ghacks.net/2026/11/19/microsoft-is-retiring-to-do-in-june-2027-and-personal-users-get-no-replacement/">Microsoft is officially retiring its To Do apps next year.</a> All To Do apps will stop working on June 30, 2027.</p>
+<p>Honestly, I never used that app, so Microsoft&#39;s retirement notice slid right past me like a notification I swiped away. I&#39;m a former Mac user who switched to Linux, and while poking around my shiny new setup, I stumbled upon a to-do app that lives entirely in the terminal. </p>
+<p>Now, please welcome our main character of this post: <strong>Taskwarrior</strong></p>
+<h2 id="setting-up-taskwarrior">Setting Up Taskwarrior</h2>
+<p>The latest stable release is Taskwarrior 3.5.0, released August 16, 2026. You can install it from your distribution&#39;s package manager or build it from source.</p>
+<p><a href="https://taskwarrior.org/download/">I highly recommend you to read this setup page of the official website to check out how to install it properly on your linux distro.</a></p>
+<h2 id="mostly-used-operations">Mostly Used Operations:</h2>
+<p>Once Taskwarrior is installed and sitting happily on your <code>PATH</code>, you&#39;re ready for the fun part. Think of the commands below as your daily muscle memory in the making: a few keystrokes for adding a task, a glance at your list, and a satisfying <code>done</code> when you finish something. Let&#39;s start with the most basic move of all, adding your very first task.</p>
+<h3 id="adding-your-first-tasks">Adding Your First Tasks</h3>
+<p>Adding a task is one command. Everything after <code>task add</code> becomes the description:</p>
+<pre><code class="language-bash">$ task add Buy milk
+Created task 1.
+$ task add Buy eggs
+Created task 2.
+$ task add Bake cake
+Created task 3.</code></pre>
+<p>Taskwarrior assigns each task a number. You&#39;ll use that number to refer to the task later.</p>
+<h3 id="viewing-your-list">Viewing Your List</h3>
+<pre><code class="language-bash">$ task list
+
+ID Description
+-- -----------
+1  Buy milk
+2  Buy eggs
+3  Bake cake
+
+3 tasks.</code></pre>
+<h3 id="finishing-tasks">Finishing Tasks</h3>
+<p>When you finish a task, mark it done:</p>
+<pre><code class="language-bash">$ task 1 done
+$ task 2 done
+$ task list
+
+ID Description
+-- -----------
+1  Bake cake
+
+1 task.</code></pre>
+<p>Notice that &quot;Bake cake&quot; is now ID 1. Taskwarrior renumbers pending tasks as you complete them, so IDs are convenient for quick typing but aren&#39;t permanent. If you&#39;re scripting or referring to a task across sessions, use its UUID instead.</p>
+<h3 id="adding-due-dates">Adding Due Dates</h3>
+<p>Attributes go after the description, written as <code>name:value</code>. A due date is the most common:</p>
+<pre><code class="language-bash">$ task add Submit the report due:2026-12-01</code></pre>
+<p>You can also use relative dates like <code>due:thursday</code> or <code>due:tomorrow</code>, which keeps things simple for short-term work.</p>
+<h3 id="recurring-tasks">Recurring Tasks</h3>
+<p>This is where Taskwarrior starts to earn its place. Rent, subscriptions, and weekly reviews are easy to forget, and recurrence lets you set them once:</p>
+<pre><code class="language-bash">$ task add Pay the rent due:1st recur:monthly until:2015-03-31
+Created task 123.</code></pre>
+<p>The <code>recur:</code> attribute accepts named intervals like <code>monthly</code> or <code>weekly</code>, and it also accepts durations. For example, <code>recur:14days</code> creates a task every two weeks.</p>
+<p>One caution about the example above: the <code>until:</code> date is in the past, so Taskwarrior won&#39;t generate new instances. For a real recurring task, use a future date, or leave <code>until:</code> out entirely if the task should repeat indefinitely.</p>
+<h3 id="editing-tasks">Editing Tasks</h3>
+<p>To change an existing task, put its ID before <code>modify</code>:</p>
+<pre><code class="language-bash">$ task 1 modify due:thursday</code></pre>
+<p>The ID matters here. If you write <code>task modify things I want to modify due:thursday</code> with no ID, Taskwarrior treats the words as a search filter and tries to match tasks whose descriptions contain them. That&#39;s a common beginner mistake, so get in the habit of giving an ID or a filter that clearly identifies the task.</p>
+<p>To remove a due date, set the attribute to nothing:</p>
+<pre><code class="language-bash">$ task 12 modify due:</code></pre>
+<h3 id="finding-what-to-work-on-next">Finding What to Work On Next</h3>
+<p>Once you have more than a handful of tasks, the question becomes &quot;what should I do now?&quot; The <code>next</code> report answers it:</p>
+<pre><code class="language-bash">$ task next</code></pre>
+<p>It doesn&#39;t simply sort by due date. Taskwarrior calculates an urgency score for each task based on factors such as due date, priority, and how long the task has been waiting, then shows the most urgent ones first. Due dates and priorities carry real weight in that score, so setting them is how you steer the list.</p>
+<h3 id="multi-line-descriptions">Multi-Line Descriptions</h3>
+<p>Sometimes a task needs more than a few words. You can pass a quoted string that spans multiple lines:</p>
+<pre><code class="language-bash">$ task add "Five syllables here
+&gt; Seven more syllables there
+&gt; Are you happy now?"</code></pre>
+<p>The <code>&gt;</code> at the start of each continuation line is your shell&#39;s prompt for an unfinished quoted string, not part of the text. Your shell passes the newlines through as part of the description. Multi-line descriptions are handy for quick notes, but keep most tasks to a single line so they stay readable in <code>task list</code>.</p>
+<h3 id="deleting-tasks">Deleting Tasks</h3>
+<p>To remove a task entirely:</p>
+<pre><code class="language-bash">$ task 1 delete</code></pre>
+<p>Taskwarrior will ask you to confirm before it deletes anything. Deleting is permanent from your list&#39;s point of view, so read the prompt before answering. If you only want to hide a task you&#39;ve finished, <code>done</code> is the better choice, since it keeps a record of the work.</p>
+<h3 id="where-to-go-from-here">Where to Go from Here</h3>
+<p>You now have the core workflow: add, list, finish, modify, and delete, plus due dates, recurrence, and the <code>next</code> report. Taskwarrior has much more, including custom reports, filters, tags, projects, and sync across machines. Start with the commands above, use them for a week, and add more features as you need them.</p>
+]]></content:encoded>
+  </item>
+  <item>
     <title>Healthy Eating Helped Me Sleep. Moving My Body Helped Me Sleep Better.</title>
     <link>https://solar-song.github.io/posts/2026-11-14.html</link>
     <guid isPermaLink="true">https://solar-song.github.io/posts/2026-11-14.html</guid>

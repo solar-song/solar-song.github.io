@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taskwarrior for Beginners: A Command-Line To-Do List That Gets Out of Your Way | Ctrl+Craft</title>
+  <meta name="description" content="Taskwarrior is a command-line to-do manager for people who already live in the terminal. This guide covers installation and the core commands for adding/modifying/deleting to-do tasks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <!-- Highlight.js themes (light/dark) -->
+  <link id="code-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+  <link id="code-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>
+    // Set theme before paint
+    (function () {
+      var t = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+  <a href="#main-content" class="skip">Skip to content</a>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="../index.html" class="logo">Ctrl+Craft</a>
+      <nav id="nav" aria-label="Main">
+        <button id="menu-btn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path class="open" d="M3 6h18M3 12h18M3 18h18"/><path class="close" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <ul id="menu">
+          <li><a href="../index.html#posts">Posts</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li>
+            <a href="#" class="icon-btn" aria-label="Search" title="Search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            </a>
+          </li>
+          <li>
+            <button id="theme-btn" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+              <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+              <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap"><hr></div>
+  </header>
+
+  <main id="main-content" class="wrap page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"></nav>
+
+    <h1 class="page-title" data-reveal>Taskwarrior for Beginners: A Command-Line To-Do List That Gets Out of Your Way</h1>
+
+    <div class="prose" data-reveal>
+      <div class="date">Published: <time>Nov 23, 2026</time></div>
+      <p>Just heard this news that <a href="https://www.ghacks.net/2026/11/19/microsoft-is-retiring-to-do-in-june-2027-and-personal-users-get-no-replacement/">Microsoft is officially retiring its To Do apps next year.</a> All To Do apps will stop working on June 30, 2027.</p>
+<p>Honestly, I never used that app, so Microsoft&#39;s retirement notice slid right past me like a notification I swiped away. I&#39;m a former Mac user who switched to Linux, and while poking around my shiny new setup, I stumbled upon a to-do app that lives entirely in the terminal. </p>
+<p>Now, please welcome our main character of this post: <strong>Taskwarrior</strong></p>
+<h2 id="setting-up-taskwarrior">Setting Up Taskwarrior</h2>
+<p>The latest stable release is Taskwarrior 3.5.0, released August 16, 2026. You can install it from your distribution&#39;s package manager or build it from source.</p>
+<p><a href="https://taskwarrior.org/download/">I highly recommend you to read this setup page of the official website to check out how to install it properly on your linux distro.</a></p>
+<h2 id="mostly-used-operations">Mostly Used Operations:</h2>
+<p>Once Taskwarrior is installed and sitting happily on your <code>PATH</code>, you&#39;re ready for the fun part. Think of the commands below as your daily muscle memory in the making: a few keystrokes for adding a task, a glance at your list, and a satisfying <code>done</code> when you finish something. Let&#39;s start with the most basic move of all, adding your very first task.</p>
+<h3 id="adding-your-first-tasks">Adding Your First Tasks</h3>
+<p>Adding a task is one command. Everything after <code>task add</code> becomes the description:</p>
+<pre><code class="language-bash">$ task add Buy milk
+Created task 1.
+$ task add Buy eggs
+Created task 2.
+$ task add Bake cake
+Created task 3.</code></pre>
+<p>Taskwarrior assigns each task a number. You&#39;ll use that number to refer to the task later.</p>
+<h3 id="viewing-your-list">Viewing Your List</h3>
+<pre><code class="language-bash">$ task list
+
+ID Description
+-- -----------
+1  Buy milk
+2  Buy eggs
+3  Bake cake
+
+3 tasks.</code></pre>
+<h3 id="finishing-tasks">Finishing Tasks</h3>
+<p>When you finish a task, mark it done:</p>
+<pre><code class="language-bash">$ task 1 done
+$ task 2 done
+$ task list
+
+ID Description
+-- -----------
+1  Bake cake
+
+1 task.</code></pre>
+<p>Notice that &quot;Bake cake&quot; is now ID 1. Taskwarrior renumbers pending tasks as you complete them, so IDs are convenient for quick typing but aren&#39;t permanent. If you&#39;re scripting or referring to a task across sessions, use its UUID instead.</p>
+<h3 id="adding-due-dates">Adding Due Dates</h3>
+<p>Attributes go after the description, written as <code>name:value</code>. A due date is the most common:</p>
+<pre><code class="language-bash">$ task add Submit the report due:2026-12-01</code></pre>
+<p>You can also use relative dates like <code>due:thursday</code> or <code>due:tomorrow</code>, which keeps things simple for short-term work.</p>
+<h3 id="recurring-tasks">Recurring Tasks</h3>
+<p>This is where Taskwarrior starts to earn its place. Rent, subscriptions, and weekly reviews are easy to forget, and recurrence lets you set them once:</p>
+<pre><code class="language-bash">$ task add Pay the rent due:1st recur:monthly until:2015-03-31
+Created task 123.</code></pre>
+<p>The <code>recur:</code> attribute accepts named intervals like <code>monthly</code> or <code>weekly</code>, and it also accepts durations. For example, <code>recur:14days</code> creates a task every two weeks.</p>
+<p>One caution about the example above: the <code>until:</code> date is in the past, so Taskwarrior won&#39;t generate new instances. For a real recurring task, use a future date, or leave <code>until:</code> out entirely if the task should repeat indefinitely.</p>
+<h3 id="editing-tasks">Editing Tasks</h3>
+<p>To change an existing task, put its ID before <code>modify</code>:</p>
+<pre><code class="language-bash">$ task 1 modify due:thursday</code></pre>
+<p>The ID matters here. If you write <code>task modify things I want to modify due:thursday</code> with no ID, Taskwarrior treats the words as a search filter and tries to match tasks whose descriptions contain them. That&#39;s a common beginner mistake, so get in the habit of giving an ID or a filter that clearly identifies the task.</p>
+<p>To remove a due date, set the attribute to nothing:</p>
+<pre><code class="language-bash">$ task 12 modify due:</code></pre>
+<h3 id="finding-what-to-work-on-next">Finding What to Work On Next</h3>
+<p>Once you have more than a handful of tasks, the question becomes &quot;what should I do now?&quot; The <code>next</code> report answers it:</p>
+<pre><code class="language-bash">$ task next</code></pre>
+<p>It doesn&#39;t simply sort by due date. Taskwarrior calculates an urgency score for each task based on factors such as due date, priority, and how long the task has been waiting, then shows the most urgent ones first. Due dates and priorities carry real weight in that score, so setting them is how you steer the list.</p>
+<h3 id="multi-line-descriptions">Multi-Line Descriptions</h3>
+<p>Sometimes a task needs more than a few words. You can pass a quoted string that spans multiple lines:</p>
+<pre><code class="language-bash">$ task add "Five syllables here
+&gt; Seven more syllables there
+&gt; Are you happy now?"</code></pre>
+<p>The <code>&gt;</code> at the start of each continuation line is your shell&#39;s prompt for an unfinished quoted string, not part of the text. Your shell passes the newlines through as part of the description. Multi-line descriptions are handy for quick notes, but keep most tasks to a single line so they stay readable in <code>task list</code>.</p>
+<h3 id="deleting-tasks">Deleting Tasks</h3>
+<p>To remove a task entirely:</p>
+<pre><code class="language-bash">$ task 1 delete</code></pre>
+<p>Taskwarrior will ask you to confirm before it deletes anything. Deleting is permanent from your list&#39;s point of view, so read the prompt before answering. If you only want to hide a task you&#39;ve finished, <code>done</code> is the better choice, since it keeps a record of the work.</p>
+<h3 id="where-to-go-from-here">Where to Go from Here</h3>
+<p>You now have the core workflow: add, list, finish, modify, and delete, plus due dates, recurrence, and the <code>next</code> report. Taskwarrior has much more, including custom reports, filters, tags, projects, and sync across machines. Start with the commands above, use them for a week, and add more features as you need them.</p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap"><hr></div>
+    <div class="wrap footer-inner">
+      <div class="socials"><a href="https://github.com/solar-song" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+<a href="https://x.com/solarsong" title="X" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+<a href="https://www.linkedin.com/in/solarsong/" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+<a href="mailto:fortunecookie555@outlook.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></a></div>
+      <div class="copy">Copyright &copy; <span id="year">2026</span> &nbsp;—&nbsp; solar-song &nbsp;|&nbsp; All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>window.__SITE_BASE = "../";</script>
+  <script src="../script.js"></script>
+  <script src="../effects.js"></script>
+</body>
+</html>
